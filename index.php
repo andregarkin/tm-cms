@@ -1,0 +1,1 @@
+// this string insert in HP 630
