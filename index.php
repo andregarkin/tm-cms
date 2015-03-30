@@ -1,1 +1,4 @@
-// this string insert in HP 630
+<?php 
+echo 'Hello world!';
+
+
