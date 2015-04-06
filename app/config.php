@@ -4,7 +4,7 @@ define ('DS', DIRECTORY_SEPARATOR); // разделитель для путей 
 $sitePath = realpath(dirname(__FILE__) . DS) . DS;
 define ('SITE_PATH', $sitePath); // путь к корневой папке сайта
 //print DS . '<br>';
-print 'SITE_PATH: ' . SITE_PATH . '<br>';
+print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 
 
 define('SERVER_NAME', $_SERVER['SERVER_NAME']);
@@ -12,21 +12,21 @@ define('DOMAIN_LOCAL', 'host.local');
 define('DOMAIN_DEV', 'unexist');
 define('DOMAIN_LIVE', 'unexist');
 
-print 'SERVER_NAME: ' . SERVER_NAME . '<br>';
+print 'SERVER_NAME: ' . SERVER_NAME . '<br>'; // 'host.local'
 
 
-$string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/php-mvc/index.php'
-$ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // '/php-mvc'
-$subfolderPath = '/' . $ar[0]; // '/php-mvc'
+$string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/tm-cms/index.php'
+$ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // '/tm-cms'
+$subfolderPath = '/' . $ar[0]; // '/tm-cms'
 define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта
-print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>';
+print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/php-mvc'
 
 print '<pre>';
 //print_r($_SERVER);
 print '</pre>';
 
 if (SERVER_NAME == DOMAIN_LOCAL) {
-  define('DB_NAME', 'user19_tst_php_mvc');
+  define('DB_NAME', 'test');
   define('DB_USER', 'user19');
   define('DB_PASS', 'tuser19');
   define('DB_HOST', 'localhost');
@@ -35,7 +35,7 @@ if (SERVER_NAME == DOMAIN_LOCAL) {
 }
 else {
   // для подключения к бд
-  define('DB_NAME', 'blog_mvc');
+  define('DB_NAME', 'unexist');
   define('DB_USER', 'root');
   define('DB_PASS', '');
   define('DB_HOST', 'localhost');
@@ -65,3 +65,15 @@ if (true == TM_DEBUG) {
   // включим отображение всех ошибок
   error_reporting (E_ALL); 
 }
+
+
+/*
+	error_reporting(E_ALL); 
+	ini_set("display_errors", 1);
+
+	mysql_connect ("localhost", "user19","tuser19");//пишите свои настройки
+	mysql_select_db("test") or die (mysql_error());//и свою бд
+	mysql_query('SET character_set_database = utf8'); 
+	mysql_query ("SET NAMES 'utf8'");
+
+*/
