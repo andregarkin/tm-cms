@@ -9,4 +9,4 @@ $dbObject->exec('SET CHARACTER SET utf8');
 
 
 
-include('../tpl/category.tpl.php');
+include('../tpl/about.tpl.php');

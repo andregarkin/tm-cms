@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Contact Us | TM Course</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.5">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
-        
-        
-    </head>
-    <body>
-        <div class="container">
-          <h3>Contact Us</h3>
-          <p>Lorem ipsum</p>
+<?php
 
-        </div>
-        <script>
+include ('app/config.php'); 
 
-        </script>
-    </body>
-</html>
+
+// Connect to DB
+$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+$dbObject->exec('SET CHARACTER SET utf8');
+
+
+
+include ('tpl/contact_us.tpl.php');

@@ -1,13 +1,13 @@
 <?php
-// Задаем константы:
-define ('DS', DIRECTORY_SEPARATOR); // разделитель для путей к файлам
+// define the constants
+define ('DS', DIRECTORY_SEPARATOR);
 $sitePath = realpath(dirname(__FILE__) . DS) . DS;
-define ('SITE_PATH', $sitePath); // путь к корневой папке сайта
+define ('SITE_PATH', $sitePath); // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 //print DS . '<br>';
 print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 
 
-define('SERVER_NAME', $_SERVER['SERVER_NAME']);
+define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local'
 define('DOMAIN_LOCAL', 'host.local');
 define('DOMAIN_DEV', 'unexist');
 define('DOMAIN_LIVE', 'unexist');
@@ -21,20 +21,22 @@ $subfolderPath = '/' . $ar[0]; // '/tm-cms'
 define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта
 print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/php-mvc'
 
-print '<pre>';
+//print 'S_SERVER: <pre>';
 //print_r($_SERVER);
-print '</pre>';
+//print '</pre>';
 
 if (SERVER_NAME == DOMAIN_LOCAL) {
+
   define('DB_NAME', 'test');
   define('DB_USER', 'user19');
   define('DB_PASS', 'tuser19');
   define('DB_HOST', 'localhost');
   //define('DB_CHARSET', 'utf8');
   //define('DB_COLLATE', '');
+  
 }
 else {
-  // для подключения к бд
+
   define('DB_NAME', 'unexist');
   define('DB_USER', 'root');
   define('DB_PASS', '');

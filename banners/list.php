@@ -19,6 +19,17 @@ $objSession->printnow();
 
 $objSession->defineStatus();
 
-include ('../tpl/admin_default.tpl.php');
+    
+if (false == LOGGED) {
+  header("Location: http://" . SERVER_NAME . SUBFOLDER_PATH);
+}
+
+if (LOGGED) {
+  include ('../tpl/banners_list.tpl.php');  
+}
+      
+
+
+
 
 ?>

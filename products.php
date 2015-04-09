@@ -1,6 +1,6 @@
 <?php
 
-include ('../app/config.php'); 
+include ('app/config.php'); 
 
 
 // Connect to DB
@@ -9,4 +9,4 @@ $dbObject->exec('SET CHARACTER SET utf8');
 
 
 
-include('../tpl/category.tpl.php');
+include ('tpl/products.tpl.php');
