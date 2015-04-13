@@ -5,7 +5,6 @@ class Database
     private static $dbHost = DB_HOST;
     private static $dbUsername = DB_USER;
     private static $dbUserPassword = DB_PASS;
- 
     private static $cont  = null;
      
     public function __construct() {
@@ -19,7 +18,8 @@ class Database
        {     
         try
         {
-          self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword); 
+          self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
+          self::$cont->exec('SET CHARACTER SET utf8');
           
           // connect to DB
           //$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);

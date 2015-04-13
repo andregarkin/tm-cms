@@ -35,7 +35,7 @@
         
         <label for="inputLogin" class="sr-only">Login</label>
         <input name="login" type="text" id="inputLogin" class="form-control" 
-          value= <?php print $objSession->cookLogin ?>
+          value="<?php print $objSession->cookLogin ?>" 
           placeholder="Your login" required autofocus/>
         
         <label for="inputPassword" class="sr-only">Password</label>

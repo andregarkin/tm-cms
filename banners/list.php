@@ -1,6 +1,8 @@
 <?php
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
+include ('../app/classes/Banner.php');
+include ('../app/classes/Printer.php');
 
 $objSession = new Session();
 $objSession->start();
@@ -28,8 +30,25 @@ if (LOGGED) {
   //$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
   //$dbObject->exec('SET CHARACTER SET utf8');  
   
-  $pdo = Database::connect();
-  $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `tmcms_tbanners` ORDER BY `id` ASC';
+  $pdo = Database::connect(); // PDO object
+  
+  $objBanner = new Banner($pdo);
+  $arrBanners = $objBanner->read(); // array | false
+  
+  //Printer::printnow($arrBanners, '$arrBanners');
+    /*Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [title] => Banner First
+            [content] => 
+First Lorem ipsum dolor
+
+            [option_display] => 1
+        )
+)*/
+  Database::disconnect();
   
   include ('../tpl/banners_list.tpl.php');  
 }

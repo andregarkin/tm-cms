@@ -4,6 +4,12 @@
     
     
     <h2 class="sub-header">Banners List</h2>
+    <div class='zero-size'>
+      <p class="h2-left-offset-200">
+        <a href="create.php" class="btn btn-success">Create</a>
+      </p>
+    </div>
+    
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -17,13 +23,13 @@
       </thead>
       <tbody>
         <?php 
-        foreach ($pdo->query($sql) as $row) {
+        foreach ($arrBanners as $row) {
           echo '<tr>';
           echo '<td>'. $row['id'] . '</td>';
           echo '<td>'. $row['title'] . '</td>';
           echo '<td><code>'. substr(htmlentities($row['content'], ENT_QUOTES), 0, 45) . ' ... </code></td>';
           ?>
-          <td><a href="#">Edit</a> / <a href="#">Remove</a></td>
+          <td><a class="btn" href="read.php?id=<?php print $row['id'] ?>">Read</a> / <a class="btn" href="#">Update</a> / <a class="btn" href="#">Delete</a></td>
           <?php
           if ($row['option_display']) {
             $op_display = 'On';
@@ -36,7 +42,6 @@
           echo '<td><span class="' . $op_class . '">'. $op_display . '</span></td>';
           echo '</tr>';
         }
-        Database::disconnect();
         ?>
         <tr>
           <td>1</td>

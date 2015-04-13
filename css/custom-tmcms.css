@@ -1,0 +1,25 @@
+ .zero-size {
+  position:relative; 
+  height:0; 
+  /*width:0;*/
+}
+
+.h2-left-offset-200 {
+  position: absolute;
+  top: -45px;
+  left: 200px;
+}
+
+.h2-left-offset-250 {
+  position: absolute;
+  top: -35px;
+  left: 250px;
+}
+
+.form-actions {
+  margin-top:10px;
+}
+
+.form-horizontal .control-label {
+  margin-bottom:5px;
+}

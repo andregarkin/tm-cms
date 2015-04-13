@@ -1,5 +1,6 @@
 <?php
 include ('../app/classes/Session.php');
+include ('../app/classes/Database.php');
 
 $objSession = new Session();
 $objSession->start();
@@ -10,8 +11,9 @@ $objSession->start();
 include ('../app/config.php'); 
 
 // Connect to DB
-$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-$dbObject->exec('SET CHARACTER SET utf8');  
+//$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+//$dbObject->exec('SET CHARACTER SET utf8');  
+$pdo = Database::connect();
 
 
 
@@ -30,7 +32,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
           LIMIT 1";
           
   try {
-    $stmt = $dbObject->query($query); // PDOStatement | FALSE
+    $stmt = $pdo->query($query); // PDOStatement | FALSE
     $row = $stmt->fetch(PDO::FETCH_ASSOC); // value | FALSE
     
     print 'row: <pre>';

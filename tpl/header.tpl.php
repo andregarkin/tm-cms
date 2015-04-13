@@ -16,9 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="<?php print SUBFOLDER_PATH ?>/css/sticky-footer-navbar.css" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
     <link href="<?php print SUBFOLDER_PATH ?>/css/signin.css" rel="stylesheet">
+    <link href="<?php print SUBFOLDER_PATH ?>/css/custom-tmcms.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="<?php #print SUBFOLDER_PATH ?>/js/assets/ie8-responsive-file-warning.js"></script><![endif]-->
