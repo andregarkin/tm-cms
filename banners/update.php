@@ -77,8 +77,10 @@ if (LOGGED) {
       
       if ($res) {
         $msg_update_status = "Banner was updated!";
+        $msg_class = ' text-success';
       } else {
         $msg_update_status = "Can't update the entry. Something was wrong.";
+        $msg_class = ' text-danger';
       }
       
       Database::disconnect();

@@ -62,4 +62,18 @@ class Banner
     
   }
   
-}
+  public function delete($id) {
+    
+    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "DELETE FROM `tmcms_tbanners`  WHERE id = ?";
+    $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
+    if (!$q) return false;
+    $q->execute(array($id)); // TRUE | FALSE
+    if ($q->rowCount() > 0) {
+      return TRUE;
+    }
+    return FALSE;
+    
+  }
+  
+} // end class Banner
