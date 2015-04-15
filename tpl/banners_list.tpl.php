@@ -23,13 +23,15 @@
       </thead>
       <tbody>
         <?php 
-        foreach ($arrBanners as $row) {
-          echo '<tr>';
-          echo '<td>'. $row['id'] . '</td>';
-          echo '<td>'. $row['title'] . '</td>';
-          echo '<td><code>'. substr(htmlentities($row['content'], ENT_QUOTES), 0, 45) . ' ... </code></td>';
-          ?>
-          <td><a class="btn" href="read.php?id=<?php print $row['id'] ?>">Read</a> / <a class="btn" href="#">Update</a> / <a class="btn" href="#">Delete</a></td>
+        foreach ($arrBanners as $row) { ?>
+          <tr>
+          <td><?php print $row['id'] ?></td>
+          <td><?php print $row['title'] ?></td>
+          <td><code><?php print substr(htmlentities($row['content'], ENT_QUOTES), 0, 45) ?> ... </code></td>
+
+          <td><a class="btn btn-info" href="read.php?id=<?php print $row['id'] ?>">Read</a>
+          <a class="btn btn-primary"  href="update.php?id=<?php print $row['id'] ?>">Update</a>
+          <a class="btn btn-danger"   href="delete.php?id=<?php print $row['id'] ?>">Delete</a></td>
           <?php
           if ($row['option_display']) {
             $op_display = 'On';
@@ -37,26 +39,11 @@
           } else {
             $op_display = 'Off';
             $op_class = 'bg-danger';
-          }
+          } ?>
           
-          echo '<td><span class="' . $op_class . '">'. $op_display . '</span></td>';
-          echo '</tr>';
-        }
-        ?>
-        <tr>
-          <td>1</td>
-          <td>Banner 111</td>
-          <td><code>&lt;div&gt;Lorem ipsum dolor ...</code></td>
-          <td><a href="#">Edit</a> / <a href="#">Remove</a></td>
-          <td><span class="bg-info highlight">On</span></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Banner 111</td>
-          <td><code>&lt;div&gt;Lorem ipsum dolor ...</code></td>
-          <td><a href="#">Edit</a> / <a href="#">Remove</a></td>
-          <td><span class="bg-danger">Off</span></td>
-        </tr>
+          <td><span class="<?php print $op_class ?>"><?php print $op_display ?></span></td>
+          </tr>
+        <?php } ?>
       </tbody>
     </table>
     </div>

@@ -9,4 +9,9 @@ class Printer
     print '</pre>';
   }
   
+  public static function gettype($var) {
+    if (false == TM_DEBUG) return;
+    print '<pre>gettype: '. gettype($var) .'</pre>';
+  }
+  
 }

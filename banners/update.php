@@ -21,15 +21,24 @@ if (false == LOGGED) {
 }
 
 if (LOGGED) {
-  // show form to create banner
-
-if ( !empty($_POST)) {
+  // show form to UPDATE banner
+  
+  $id = null;
+  if ( !empty($_GET['id'])) {
+    $id = $_REQUEST['id'];
+  }
+   
+  if ( null==$id ) {
+    header("Location: list.php");
+  }
+   
+  if ( !empty($_POST)) {
   //Printer::printnow($_POST, '$_POST');
   
   // keep track validation errors
   $titleError = null;
   $contentError = null;
-  $option_displayError = null;
+  $option_displayError = null;  
   
   // keep track post values
   $title = $_POST['title'];
@@ -40,9 +49,6 @@ if ( !empty($_POST)) {
   else {
     $option_display = false;
   }
-  
-  //Printer::gettype($option_display);
-  
    
   // validate input
   $valid = true;
@@ -60,28 +66,54 @@ if ( !empty($_POST)) {
       $option_displayError = 'Please check the Dispaly Option';
       $valid = false;
   }
-   
-  // insert data
-  if ($valid) {
+
+     
+    // update data
+    if ($valid) {
+      $pdo = Database::connect();
+      
+      $objBanner = new Banner($pdo);
+      $res = $objBanner->update($title, $content, $option_display, $id); // true | false
+      
+      if ($res) {
+        $msg_update_status = "Banner was updated!";
+      } else {
+        $msg_update_status = "Can't update the entry. Something was wrong.";
+      }
+      
+      Database::disconnect();
+      //header("Location: index.php");
+    }
     
-        
-    // connect to DB
-    $pdo = Database::connect(); // PDO object
+  }
+  else {
+    $pdo = Database::connect();
     
     $objBanner = new Banner($pdo);
-    $res = $objBanner->create($title, $content, $option_display); // true | false
+    $res = $objBanner->read($id);
+    
     Database::disconnect();
     
-    if ($res) {
-      $msg_create_status = "New banner was created!";
-    } else {
-      $msg_create_status = "Can't save new entry. Something was wrong.";
+    Printer::printnow($res, '$res');
+    Printer::gettype($res);
+    
+    if (!$res) {
+      $msg_update_status = "Can't read the entry. Something was wrong.";
+      $msg_class = ' text-danger';
+      
+      $id = null;
+      $title = 'empty';
+      $content = 'empty';
+      $option_display = 'empty';
     }
-    //header("Location: index.php");
+    else {
+      $title = $res['title'];
+      $content = $res['content'];
+      $option_display = $res['option_display'];
+    }
+    
   }
   
-}
-
-  include ('../tpl/banners_create.tpl.php');
-  //include ('../tpl/banners_create_temp.tpl.php');
+  
+  include ('../tpl/banners_update.tpl.php');
 }

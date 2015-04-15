@@ -3,16 +3,14 @@
     <div class="container">
     
     
-    <h2 class="sub-header text-center">Create a Banner</h2>
-    
-    <?php if (!empty($msg_create_status)) : ?>
+    <h2 class="sub-header text-center">Update a Banner</h2>
+    <?php if (!empty($msg_update_status)) : ?>
       <p class="text-center text-success">
-        <?php print  $msg_create_status; ?>
+        <?php print  $msg_update_status; ?>
       </p>
     <?php endif; ?>
     
-    
-    <form class="form-horizontal" method="POST">
+    <form class="form-horizontal"  action="update.php?id=<?php print $id?>" method="POST">
     
       <div class="form-group<?php print !empty($titleError)?' text-danger error':'' ?>">
           <label class="control-label col-xs-3" for="title">Title:</label>
@@ -74,7 +72,7 @@
               <!--input type="submit" class="btn btn-primary" value="Submit">
               <input type="reset" class="btn btn-default" value="Reset"-->
               
-              <button type="submit" class="btn btn-success">Create</button>
+              <button type="submit" class="btn btn-success">Update</button>
               <button type="reset" class="btn btn-default">Reset</button>
               <a href="list.php" class="btn btn-info" role="button">Back</a>
 
@@ -82,7 +80,6 @@
       </div>
       
     </form>
-    
     
     </div>  <!-- /container -->
 <?php include('footer.tpl.php') ?>
