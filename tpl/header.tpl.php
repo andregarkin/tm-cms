@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Home | TM Course</title>
+    <title><?php print !empty($curr_page_title)?$curr_page_title:'' ?> | TM Course</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php print SUBFOLDER_PATH ?>/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,11 @@
   </head>
 
   <body>
-
+    <?php #the_banner() ?>
+    <iframe src="<?php print SUBFOLDER_PATH ?>/banners/banner.php" 
+      frameborder="1"  width="100%" height="200px" scrolling="yes"
+      >Your browser does not support iframes!</iframe>
+    
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default"><!--rc navbar-fixed-top-->
       <div class="container">

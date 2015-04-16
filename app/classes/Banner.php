@@ -3,15 +3,17 @@ class Banner
 {
   
   private static $pdo;
+  private static $tableBanners;
   
   public function __construct($pdo) {
     self::$pdo = $pdo;
+    self::$tableBanners = TABLE_PREFIX . 'tbanners';
   }
   
   public function read($id = false) {
     
     if (!$id) {
-      $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `tmcms_tbanners` ORDER BY `id` ASC';
+      $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `' . self::$tableBanners . '` ORDER BY `id` ASC';
       
       try {
       $stmt = self::$pdo->query($sql); // PDOStatement | FALSE
@@ -28,7 +30,7 @@ class Banner
     else {
       // should validate id before.
       self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "SELECT `id`, `title`, `content`, `option_display` FROM `tmcms_tbanners` where id = ?";
+      $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `' . self::$tableBanners . '` where id = ?';
       $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
       if (!$q) return false;
       $q->execute(array($id)); // TRUE | FALSE
@@ -42,7 +44,7 @@ class Banner
     
     $entry_values = array($title, $content, $option_display);
     self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO `tmcms_tbanners` (`title`,`content`,`option_display`) values(?, ?, ?)";
+    $sql = 'INSERT INTO `' . self::$tableBanners . '` (`title`,`content`,`option_display`) values(?, ?, ?)';
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
@@ -54,7 +56,7 @@ class Banner
     
     $entry_values = array($title, $content, $option_display, $id);
     self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "UPDATE `tmcms_tbanners`  set title = ?, content = ?, option_display =? WHERE id = ?";
+    $sql = "UPDATE `" . self::$tableBanners . "`  set title = ?, content = ?, option_display =? WHERE id = ?";
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
@@ -65,7 +67,7 @@ class Banner
   public function delete($id) {
     
     self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "DELETE FROM `tmcms_tbanners`  WHERE id = ?";
+    $sql = "DELETE FROM `" . self::$tableBanners . "`  WHERE id = ?";
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute(array($id)); // TRUE | FALSE
@@ -73,6 +75,17 @@ class Banner
       return TRUE;
     }
     return FALSE;
+    
+  }
+  
+  /**
+   * 
+   * return: false | 'html'
+   */
+  public function getContentByPageID($page_id) {
+    
+    $banner_content = 'This banner content returned from Banner class';
+    return $banner_content;
     
   }
   

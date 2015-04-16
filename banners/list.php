@@ -1,8 +1,12 @@
 <?php
+include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
-include ('../app/classes/Printer.php');
+
+include ('../app/classes/Page.php');
+include ('../app/classes/Sitemap.php');
+
 
 $objSession = new Session();
 $objSession->start();
@@ -50,6 +54,11 @@ First Lorem ipsum dolor
 )*/
   Database::disconnect();
   
+  /* Page Title */
+  $curr_page_link = Page::getCurrentLink();
+  // eg: $curr_page_title = 'Home';
+  $curr_page_title = Sitemap::getPageTitle($curr_page_link);
+
   include ('../tpl/banners_list.tpl.php');  
 }
       

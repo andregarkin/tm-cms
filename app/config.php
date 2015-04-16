@@ -1,10 +1,11 @@
 <?php
 // define the constants
-define ('DS', DIRECTORY_SEPARATOR);
-$sitePath = realpath(dirname(__FILE__) . DS) . DS;
-define ('SITE_PATH', $sitePath); // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
+
+//define ('DS', DIRECTORY_SEPARATOR);
+//$sitePath = realpath(dirname(__FILE__) . DS) . DS;
+//define ('SITE_PATH', $sitePath); // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 //print DS . '<br>';
-print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
+//print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 
 
 define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local'
@@ -19,7 +20,7 @@ $string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/tm-cms/inde
 $ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // '/tm-cms'
 $subfolderPath = '/' . $ar[0]; // '/tm-cms'
 define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта
-print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/php-mvc'
+print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/tm-cms'
 
 //print 'S_SERVER: <pre>';
 //print_r($_SERVER);
@@ -68,6 +69,14 @@ if (true == TM_DEBUG) {
   error_reporting (E_ALL); 
 }
 
+/**
+ * TM CMS Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each a unique
+ * prefix. Only numbers, letters, and underscores please!
+ */
+//$table_prefix  = 'tmcms_';
+define('TABLE_PREFIX', 'tmcms_');
 
 /*
 	error_reporting(E_ALL); 
