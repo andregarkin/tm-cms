@@ -23,3 +23,15 @@
 .form-horizontal .control-label {
   margin-bottom:5px;
 }
+
+.form-horizontal.custom .checkbox-inline {
+  display: block;
+}
+.form-horizontal.custom .checkbox-inline+.checkbox-inline {
+  margin-left: 0px;
+}
+.form-horizontal.custom .checkbox-inline+.checkbox-inline.tab-item {
+  margin-left: 20px;
+}
+
+

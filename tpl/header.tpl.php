@@ -32,7 +32,7 @@
 
   <body>
     <?php #the_banner() ?>
-    <iframe src="<?php print SUBFOLDER_PATH ?>/banners/banner.php" 
+    <iframe id="banner" src="<?php print SUBFOLDER_PATH ?>/banners/banner.php" 
       frameborder="1"  width="100%" height="200px" scrolling="yes"
       >Your browser does not support iframes!</iframe>
     

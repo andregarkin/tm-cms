@@ -3,6 +3,7 @@ include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
+include ('../app/classes/Sitemap.php');
 
 
 $objSession = new Session();
@@ -24,7 +25,7 @@ if (LOGGED) {
   // show form to create banner
 
 if ( !empty($_POST)) {
-  //Printer::printnow($_POST, '$_POST');
+  Printer::printnow($_POST, '$_POST');
   
   // keep track validation errors
   $titleError = null;
@@ -40,6 +41,13 @@ if ( !empty($_POST)) {
   else {
     $option_display = false;
   }
+  
+  // get Pages ID's to displayed Banner.
+  $option_display_pages = array();
+  if (!empty($_POST['option_display_pages'])) {
+    $option_display_pages = $_POST['option_display_pages']; // index array: [2] => Products | [52665] => Product: 52665
+  }
+  
   
   //Printer::gettype($option_display);
   
@@ -64,12 +72,18 @@ if ( !empty($_POST)) {
   // insert data
   if ($valid) {
     
-        
+    // get pages ID's in Pages list checkboxes ('Displayed on these pages:')
+    $option_display_pages_ids = array_keys($option_display_pages);
+    
+    // Switch off Active status
+    if (0 == count($option_display_pages))
+      $option_display = '0';
+    
     // connect to DB
     $pdo = Database::connect(); // PDO object
     
     $objBanner = new Banner($pdo);
-    $res = $objBanner->create($title, $content, $option_display); // true | false
+    $res = $objBanner->create($title, $content, $option_display, $option_display_pages_ids); // true | false
     Database::disconnect();
     
     if ($res) {
@@ -81,6 +95,10 @@ if ( !empty($_POST)) {
   }
   
 }
+
+  // get Pages list
+  $pages = Sitemap::$pages;
+
 
   include ('../tpl/banners_create.tpl.php');
   //include ('../tpl/banners_create_temp.tpl.php');
