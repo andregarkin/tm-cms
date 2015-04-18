@@ -9,9 +9,7 @@ class Session {
   
   public function printnow() {
     
-    print '$_SESSION: <pre>';
-    print_r($_SESSION);
-    print '</pre>';
+    //Printer::printnow($_SESSION, '$_SESSION');
 
   }
   

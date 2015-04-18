@@ -13,7 +13,7 @@ class Sitemap {
     '/category/' => array('id' => 4, 'title' => 'Categories' ),
     '/category/index.php' => array('id' => 4, 'title' => 'Categories' ),
     '/contact_us.php' => array('id' => 5, 'title' => 'Contact Us' ),
-    //'/banners/list.php' => array('id' => 6, 'title' => 'Banners List' ),
+    '/banners/list.php' => array('id' => 6, 'title' => 'Banners List' ),
     '/other/about.php' => array('id' => 7, 'title' => 'About' ),
     //'/other/twitter-bootstrap.php' => array('id' => 8, 'title' => 'Twitter Bootstrap Page' ),
     

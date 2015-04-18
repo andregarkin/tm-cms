@@ -1,4 +1,5 @@
 <?php
+include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 
 $objSession = new Session();

@@ -8,19 +8,20 @@
 //print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
 
 
-define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local'
+define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local' | 'magenta.ho.ua' | 
 define('DOMAIN_LOCAL', 'host.local');
-define('DOMAIN_DEV', 'unexist');
+define('DOMAIN_DEV', 'magenta.ho.ua');
 define('DOMAIN_LIVE', 'unexist');
 
-print 'SERVER_NAME: ' . SERVER_NAME . '<br>'; // 'host.local'
+//print 'SERVER_NAME: ' . SERVER_NAME . '<br>'; // 'host.local'
 
 
 $string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/tm-cms/index.php'
 $ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // '/tm-cms'
 $subfolderPath = '/' . $ar[0]; // '/tm-cms'
 define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта
-print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/tm-cms'
+
+//print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/tm-cms'
 
 //print 'S_SERVER: <pre>';
 //print_r($_SERVER);
@@ -34,6 +35,14 @@ if (SERVER_NAME == DOMAIN_LOCAL) {
   define('DB_HOST', 'localhost');
   //define('DB_CHARSET', 'utf8');
   //define('DB_COLLATE', '');
+  
+}
+elseif (SERVER_NAME == DOMAIN_DEV || SERVER_NAME == 'www.' . DOMAIN_DEV) {
+
+  define('DB_NAME', 'magenta');
+  define('DB_USER', 'magenta');
+  define('DB_PASS', 'ufkfrnbrf7'); // ufkfrnbrf7
+  define('DB_HOST', 'localhost');
   
 }
 else {

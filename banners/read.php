@@ -5,6 +5,7 @@ include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
 
 include ('../app/classes/Sitemap.php');
+include ('../app/classes/Validator.php');
 
 
 $objSession = new Session();

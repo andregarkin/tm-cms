@@ -31,6 +31,8 @@ class Banner
     }
     else { // select by ID
       // should validate id before.
+      if (!Validator::isID($id)) return false;
+      
       self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `' . self::$tableBanners . '` where `id` = ?';
       $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
@@ -96,6 +98,9 @@ class Banner
   
   public function update($title, $content, $option_display, $id) {
     
+    // should validate id before.
+    if (!Validator::isID($id)) return false;
+    
     $entry_values = array($title, $content, $option_display, $id);
     self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "UPDATE `" . self::$tableBanners . "`  set title = ?, content = ?, option_display =? WHERE id = ?";
@@ -107,6 +112,9 @@ class Banner
   }
   
   public function delete($id) {
+    
+    // should validate id before.
+    if (!Validator::isID($id)) return false;
     
     self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "DELETE FROM `" . self::$tableBanners . "`  WHERE id = ?";

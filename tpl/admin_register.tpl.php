@@ -14,7 +14,7 @@
       
     <?php } ?>
     
-    <?php if (false !== LOGGED) { ?>
+    <?php if (false == LOGGED) { ?>
           
       <?php if (isset($msg_register_status)) { ?>
       <p class="lead text-center <?php print $msg_class ?>"><?php print $msg_register_status ?></p>

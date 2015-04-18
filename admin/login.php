@@ -1,4 +1,5 @@
 <?php
+include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
 
@@ -35,9 +36,9 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
     $stmt = $pdo->query($query); // PDOStatement | FALSE
     $row = $stmt->fetch(PDO::FETCH_ASSOC); // value | FALSE
     
-    print 'row: <pre>';
-    print_r($row);
-    print '</pre>';
+    //print 'row: <pre>';
+    //print_r($row);
+    //print '</pre>';
  /*   Array (
     [user_id] => 1
     [user_login] => mylogin

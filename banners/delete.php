@@ -3,6 +3,7 @@ include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
+include ('../app/classes/Validator.php');
 
 
 $objSession = new Session();
