@@ -134,8 +134,57 @@ class Banner
    */
   public function getContentByPageID($page_id) {
     
-    $banner_content = 'This banner content returned from Banner class';
+    $banner_content = '<h1 style="text-align:center; color:green;">This banner content returned from Banner class</h1>';
+    $banner_content .= '<p>Banner Content for $page_id: ' . $page_id . '</p>';
+    
+    // get Banners ID's  (Active banners, attached to specific pages) by Page ID.
+    $res = self::getBannersIDsByPageID($page_id);// array | FALSE
+    if (!$res)
+      return false;
+    if (count($res) == 0)
+      return false;
+    
+    // get random Banner ID
+    $random_index = rand(1, count($res)) -1; // 0 - N
+    $banner_random_ID = $res[$random_index]['id'];
+    
+    // get Banner Content
+    $sql = 'SELECT `content` FROM `' . self::$tableBanners . '` where `id` = ?';
+    $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
+    if (!$q) return false;
+    $q->execute(array($banner_random_ID)); // TRUE | FALSE
+    $row = $q->fetch(PDO::FETCH_ASSOC);
+    
+    $banner_content = $row['content'];
+    
     return $banner_content;
+    
+  }
+  
+  /** get Banners ID's  (Active banners, attached to specific pages) by Page ID.
+   *
+   *
+   * @  array | FALSE
+   */
+  private function getBannersIDsByPageID($page_id) {
+    
+    $sql = 'SELECT bnrs.id FROM `' . self::$tableBanners . '` AS bnrs, `' . self::$tableBannersPages . '` AS bnrs_pgs '
+      . 'WHERE bnrs_pgs.page_id= ' . $page_id
+      . ' AND bnrs_pgs.banner_id= bnrs.id '
+      . ' AND bnrs.option_display=1;';
+    
+          
+    try {
+    $stmt = self::$pdo->query($sql); // PDOStatement | FALSE
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC); // value | FALSE
+    
+    } catch(PDOException $e) {
+      echo $e->getMessage();
+      exit;
+    }
+    
+    $rows ? $res = $rows /* array */ : $res = false;
+    return $res;
     
   }
   

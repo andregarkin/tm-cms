@@ -37,8 +37,8 @@ if (LOGGED) {
    
   if ( !empty($_POST['id'])) {
     
-    Printer::printnow($_POST, '$_POST');
-    Printer::gettype($_POST['id']);
+    //Printer::printnow($_POST, '$_POST');
+    //Printer::gettype($_POST['id']);
   
     // keep track post values
     $id = $_POST['id'];
@@ -48,7 +48,7 @@ if (LOGGED) {
     $objBanner = new Banner($pdo);
     $res = $objBanner->delete($id);
     
-    Printer::printnow($res, '$res');
+    //Printer::printnow($res, '$res');
     
     if ($res) {
       $msg_delete_status = "Banner was deleted!";

@@ -1,13 +1,6 @@
 <?php
 // define the constants
 
-//define ('DS', DIRECTORY_SEPARATOR);
-//$sitePath = realpath(dirname(__FILE__) . DS) . DS;
-//define ('SITE_PATH', $sitePath); // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
-//print DS . '<br>';
-//print 'SITE_PATH: ' . SITE_PATH . '<br>'; // 'D:\Dropbox\codestorage\host.local\agarkin\php-mvc\'
-
-
 define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local' | 'magenta.ho.ua' | 
 define('DOMAIN_LOCAL', 'host.local');
 define('DOMAIN_DEV', 'magenta.ho.ua');

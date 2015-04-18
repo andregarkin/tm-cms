@@ -25,7 +25,7 @@ if (LOGGED) {
   // show form to create banner
 
 if ( !empty($_POST)) {
-  Printer::printnow($_POST, '$_POST');
+  //Printer::printnow($_POST, '$_POST');
   
   // keep track validation errors
   $titleError = null;

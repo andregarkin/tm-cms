@@ -15,11 +15,11 @@ class Page {
     $subfolder_path = SUBFOLDER_PATH; // '/tm-cms'
     $offset = strlen($subfolder_path); // 7
     
-    Printer::printnow($offset, '$offset'); // 7
+    //Printer::printnow($offset, '$offset'); // 7
     
     $curr_link  = substr($string = $php_self, $start = $offset); // '/index.php'
     
-    Printer:: printnow($curr_link, '$curr_link'); // '/index.php'
+    //Printer:: printnow($curr_link, '$curr_link'); // '/index.php'
     
     return $curr_link;
     

@@ -8,21 +8,19 @@ include ('../app/classes/Banner.php');
 //include ('../app/classes/Session.php');
 
 
-
-
 // Get Banner for iframe by current Page ID 
 
 // plug the config
 include ('../app/config.php'); 
     
 
-Printer::printnow($_GET, '$_GET');
+//Printer::printnow($_GET, '$_GET');
 
-Printer::printnow($_SERVER['HTTP_REFERER'], '$_SERVER[HTTP_REFERER]');
+//Printer::printnow($_SERVER['HTTP_REFERER'], '$_SERVER[HTTP_REFERER]'); // 'http://host.local/tm-cms/products.php' | 
 
 // Need Referer Link, eg:  '/' | 'index.php' | 'products.php' , etc.
 $referer_link = Iframe::getRefererLink();
-Printer::printnow($referer_link, '$referer_link'); //  '/' | 'index.php' | 'products.php'
+//Printer::printnow($referer_link, '$referer_link'); //  '/' | 'index.php' | 'products.php'
 
 // Sitemap - get Page ID by Site Page link: '/' | 'index.php' | 'products.php'
 $page_id = Sitemap::getPageID($referer_link); // int | false
@@ -35,10 +33,11 @@ if ($page_id) {
   $objBanner = new Banner($pdo);
   $banner_content = $objBanner->getContentByPageID($page_id); // false | 'html'
   
+  //Printer::printnow($banner_content, '$banner_content');
 }
 
 if (empty($banner_content) || false == $banner_content) {
-  $banner_content = 'On this page can be placed your banner';
+  $banner_content = '<h1 style="text-align:center; color:green;">On this page can be placed your banner</h1>';
 }
   
   

@@ -59,9 +59,15 @@
           
               <?php foreach ($pages as $page) : ?>
               <?php 
+              // Skip same Page Title.
               if (isset($previous_page) && ($page['id'] == $previous_page)) {
                 continue;
               }
+              // Skip Page with Title 'Banners List'.
+              if ($page['id'] == 6) {
+                continue;
+              }
+              // Make tab for item (if nested Page).
               $tab_class = ''; // css class for item
               if ($page['id'] > 52000) {
                 $tab_class = ' tab-item';

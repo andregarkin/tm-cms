@@ -97,8 +97,8 @@ if (LOGGED) {
     
     Database::disconnect();
     
-    Printer::printnow($res, '$res');
-    Printer::gettype($res);
+    //Printer::printnow($res, '$res');
+    //Printer::gettype($res);
     
     if (!$res) {
       $msg_update_status = "Can't read the entry. Something was wrong.";

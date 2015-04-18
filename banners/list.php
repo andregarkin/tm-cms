@@ -17,7 +17,7 @@ $objSession->start();
 include ('../app/config.php'); 
 
     
-$objSession->printnow();
+//$objSession->printnow();
 
 $objSession->defineStatus();
 

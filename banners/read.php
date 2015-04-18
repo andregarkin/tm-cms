@@ -29,7 +29,7 @@ if (LOGGED) {
   $id = null;
   if ( !empty($_GET['id'])) {
       $id = $_REQUEST['id'];
-      Printer::printnow($_REQUEST, '$_REQUEST');
+      //Printer::printnow($_REQUEST, '$_REQUEST');
   }
    
   if ( null==$id ) {
@@ -86,7 +86,7 @@ if (LOGGED) {
         //$res['option_display_pages'] = $option_display_pages;
         $row = $res;
         
-        Printer::printnow($row, '$row');
+        //Printer::printnow($row, '$row');
         
       }
   }
