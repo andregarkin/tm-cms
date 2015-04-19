@@ -10,7 +10,7 @@
       </p>
     <?php endif; ?>
     
-    <form class="form-horizontal"  action="update.php?id=<?php print $id?>" method="POST">
+    <form class="form-horizontal custom"  action="update.php?id=<?php print $id?>" method="POST">
     
       <div class="form-group<?php print !empty($titleError)?' text-danger error':'' ?>">
           <label class="control-label col-xs-3" for="title">Title:</label>
@@ -51,18 +51,39 @@
       </div>
       
       <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-9">
-              <label class="checkbox-inline">
-                  <input type="checkbox" value="news" checked> Send me latest news and updates.
+          <label class="control-label col-xs-3">Displayed on these pages:</label>
+          <div class="col-xs-9">
+          
+              <?php foreach ($pages as $page) : ?>
+              <?php 
+              // Skip same Page Title.
+              if (isset($previous_page) && ($page['id'] == $previous_page)) {
+                continue;
+              }
+              // Skip Page with Title 'Banners List'.
+              if ($page['id'] == 6) {
+                continue;
+              }
+              // Make tab for item (if nested Page).
+              $tab_class = ''; // css class for item
+              if ($page['id'] > 52000) {
+                $tab_class = ' tab-item';
+              }
+              $previous_page = $page['id']; // temp var
+              ?>
+              <label class="checkbox-inline<?php print $tab_class ?>">
+                  <input type="checkbox" name="option_display_pages[<?php print $page['id'] ?>]" value="<?php print $page['title'] ?>" 
+                  <?php if ( isset($option_display_pages) && array_key_exists($key = $page['id'], $array = $option_display_pages) ) : ?>
+                    checked 
+                  <?php endif; ?>
+                  <?php if (in_array($needle = $page['id'], $haystack = $pagesIDs)): ?>
+                    checked 
+                  <?php endif; ?>
+                  ><?php print $page['title'] ?>
+                  
               </label>
-          </div>
-      </div>
-      
-      <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-9">
-              <label class="checkbox-inline">
-                  <input type="checkbox" value="agree">  I agree to the <a href="#">Terms and Conditions</a>.
-              </label>
+              <?php endforeach; ?>
+              
           </div>
       </div>
       <br>

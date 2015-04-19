@@ -45,7 +45,7 @@ if (LOGGED) {
       //Printer::printnow($res, '$res');
       //Printer::gettype($res);
       
-      $pagesIDs = array(); // temp
+      $pagesIDs = array(); // arr of checked pages
       if (!$res) {
         $msg_read_status = "Can't read the entry. Something was wrong.";
         $msg_class = ' text-danger';

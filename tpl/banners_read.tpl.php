@@ -78,7 +78,6 @@
             ?>
               <label class="checkbox-inline<?php print $tab_class ?>">
                   <input type="checkbox" name="option_display_pages[<?php print $page['id'] ?>]" 
-                  $pagesIDs[] 
                   <?php if (in_array($needle = $page['id'], $haystack = $pagesIDs)): ?>
                     checked 
                   <?php endif; ?>

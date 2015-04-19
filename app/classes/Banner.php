@@ -96,7 +96,7 @@ class Banner
     
   }
   
-  public function update($title, $content, $option_display, $id) {
+  public function update($title, $content, $option_display, $id, $option_display_pages_ids) {
     
     // should validate id before.
     if (!Validator::isID($id)) return false;
@@ -107,6 +107,33 @@ class Banner
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
+    if (!$q) return false;
+    
+    // insert into comparison table `banners_pages` new value `banner_id` and `pages_id` value.
+    // Before writing these lines (line) must be removed for this banner all entries from the link table (remove the checkboxes).
+    $sql = "DELETE FROM `" . self::$tableBannersPages . "`  WHERE banner_id = ?";
+    $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
+    if (!$q) return false;
+    $q->execute(array($id)); // TRUE | FALSE
+    
+    // insert into comparison table `banners_pages` new value `banner_id` and `pages_id` value.
+    // if arr $option_display_pages_ids contains at least 1 value with `page_id`.
+    if (count($option_display_pages_ids) > 0) {
+      
+      
+      $sql = 'INSERT INTO `' . self::$tableBannersPages . '` (`banner_id`,`page_id`) values(:banner_id, :page_id)';
+      //$q = self::$pdo->prepare('INSERT INTO foo VALUES(:a, :b, :c)');
+      $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
+      if (!$q) return false;
+      foreach($option_display_pages_ids as $page_id)
+      {
+          $q->bindValue(':banner_id', $id); // TRUE | FALSE
+          $q->bindValue(':page_id', $page_id);
+          $q->execute(); // TRUE | FALSE
+      }
+      
+    }
+    
     return $q;
     
   }
@@ -130,7 +157,7 @@ class Banner
   
   /**
    * 
-   * return: false | 'html'
+   * @: false | 'html'
    */
   public function getContentByPageID($page_id) {
     

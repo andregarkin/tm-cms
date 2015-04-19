@@ -98,7 +98,9 @@ if ( !empty($_POST)) {
 
   // get Pages list
   $pages = Sitemap::$pages;
-
+  
+  /* Page Title */
+  $curr_page_title = 'Create Banner';
 
   include ('../tpl/banners_create.tpl.php');
   //include ('../tpl/banners_create_temp.tpl.php');
