@@ -188,6 +188,28 @@ class Banner
     
   }
   
+  /**
+   * Get banners rows by Search string 'title'
+   *
+   * @ array | false
+   */
+  public function searchByName($searchName) {
+    $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `' . self::$tableBanners 
+      . '` WHERE title LIKE "%' . $searchName . '%" ORDER BY `id` ASC';
+      
+      try {
+      $stmt = self::$pdo->query($sql); // PDOStatement | FALSE
+      $rows = $stmt->fetchAll(PDO::FETCH_ASSOC); // value | FALSE
+      
+      } catch(PDOException $e) {
+        echo $e->getMessage();
+        exit;
+      }
+      
+      $rows ? $res = $rows /* array */ : $res = false;
+      return $res;
+  }
+  
   /** get Banners ID's  (Active banners, attached to specific pages) by Page ID.
    *
    *

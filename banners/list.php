@@ -61,9 +61,4 @@ First Lorem ipsum dolor
 
   include ('../tpl/banners_list.tpl.php');  
 }
-      
-
-
-
-
 ?>

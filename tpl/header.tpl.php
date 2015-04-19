@@ -74,7 +74,7 @@
             </li>
             
             <?php if (false == LOGGED) { ?>
-            <li><a href="<?php print SUBFOLDER_PATH ?>/admin/default.php">Login</a></li>
+            <li><a href="<?php print SUBFOLDER_PATH ?>/admin/login.php">Login</a></li>
             <?php } ?>
             
             <?php if (LOGGED) { ?>
