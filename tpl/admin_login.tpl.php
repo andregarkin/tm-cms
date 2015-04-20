@@ -42,7 +42,8 @@
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required/>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"/> Remember me
+            <!--input type="checkbox" value="remember-me"/> Remember me-->
+            <span>Try mylogin and 123</span>
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

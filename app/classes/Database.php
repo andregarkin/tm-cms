@@ -14,19 +14,13 @@ class Database
     public static function connect()
     {
        // One connection through whole application
-       if ( null == self::$cont )
-       {     
-        try
-        {
+       if ( null == self::$cont ) {
+        try {
+          // connect to DB
           self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
           self::$cont->exec('SET CHARACTER SET utf8');
-          
-          // connect to DB
-          //$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-          //$dbObject->exec('SET CHARACTER SET utf8');  
         }
-        catch(PDOException $e)
-        {
+        catch(PDOException $e) {
           die($e->getMessage()); 
         }
        }

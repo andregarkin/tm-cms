@@ -70,6 +70,7 @@
                 <li class="dropdown-header">Other</li>
                 <li><a href="#">Test link</a></li>
                 <li><a href="#">Test link</a></li>
+                <li><a href="<?php print SUBFOLDER_PATH ?>/other/description/">Description files</a></li>
               </ul>
             </li>
             

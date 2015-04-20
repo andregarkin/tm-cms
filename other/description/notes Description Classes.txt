@@ -1,0 +1,57 @@
+TM CMS
+
+Classes Description
+
+Classes:
+  
+    Banner
+    Database
+    Iframe
+    Page
+    Printer
+    Session
+    Sitemap
+    Validator
+    
+    
+Methods:
+    
+    Banner
+      create
+      read
+      update
+      delete
+      getContentByPageID
+      searchByName
+      private getBannersIDsByPageID
+      
+    Database
+      static connect
+      static disconnect
+      
+    Iframe
+      static getRefererLink
+      
+    Page  
+      static getCurrentLink
+      
+    Printer
+      static printnow
+      static gettype
+      
+    Session
+      start
+      defineStatus
+      destroy
+      
+    Sitemap
+      $pages
+      static getPageID
+      static getPageTitle
+      static getPageTitleByID
+      
+    Validator
+      static isID
+      
+
+      

@@ -1,0 +1,52 @@
+
+
+Main Menu
+
+Home   Products   Search    Categories     Contact Us     Login
+
+/
+/products.php
+/templates.php
+/category/index.php
+/contuct_us.php
+
+
+
+
+/index.php
+    Main menu
+/website-templates/52665.html
+    на страницу со списком таких ссылок можно перейти после перехода на страницу 'Products'
+/templates.php
+    Search Dummy page, страница поиска по сайту
+/category/index.php
+    Categories Dummy page, страница категорий продуктов
+/contuct_us.php
+    Contact Us Dummy page
+    
+/admin/default.php
+/admin/login.php
+/admin/register.php
+    authorization page
+/banners
+    banners admin panel 
+    /index.php
+
+
+On Main Page: Here you can:
+  View such Dunny Pages as: Search,  Categories,   Contact Us
+  View static list of products and link each of them
+  View random banner on each page, naturally if that banner or banners exist for that page and has active status to display
+  
+  Also you may login or register to get some additional possibilities
+  
+  Now you are logged at site as UserName. And you can:
+  
+  View list of your banners. And naturally, create new banners, modify it, customize behavior and delete it, if you need.
+  You may logout to return standard mode, and then login again in another registered user.
+  
+  
+  
+  
+
+

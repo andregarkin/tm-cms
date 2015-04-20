@@ -9,6 +9,6 @@
       
       <p>Some notes abut the project.</p>
       
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+      <p>Here you can find the <a href="<?php print SUBFOLDER_PATH ?>/other/description/">description files</a> about the project.</p>
     </div>
 <?php include('footer.tpl.php') ?>

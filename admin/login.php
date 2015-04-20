@@ -12,8 +12,6 @@ $objSession->start();
 include ('../app/config.php'); 
 
 // Connect to DB
-//$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-//$dbObject->exec('SET CHARACTER SET utf8');  
 $pdo = Database::connect();
 
 
@@ -75,6 +73,5 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
 $objSession->defineStatus();
 
 include('../tpl/admin_login.tpl.php');
-//include('../tpl/admin_login_temp.tpl.php');
 
 ?>

@@ -1,0 +1,24 @@
+TM CMS
+
+Database Description
+
+Tables:
+
+users
+    user_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_login VARCHAR(30) NOT NULL,
+    user_password VARCHAR(32) NOT NULL,
+    user_email VARCHAR(32) NOT NULL,
+    PRIMARY KEY (user_id)
+    
+banners
+   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
+   `title` tinytext NOT NULL, 
+   `content` text NOT NULL, 
+   `option_display` tinyint(1) NOT NULL DEFAULT '1', 
+   PRIMARY KEY (`id`) 
+   
+banners_pages
+  `banner_id` int(11) NOT NULL,
+  `page_id` int(11) NOT NULL
+  
