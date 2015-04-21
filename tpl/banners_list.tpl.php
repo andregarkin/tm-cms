@@ -5,10 +5,27 @@
     
     <h2 class="sub-header">Banners List</h2>
     <div class='zero-size'>
+    
       <p class="h2-left-offset-200">
         <a href="create.php" class="btn btn-success">Create</a>
       </p>
+      
+      <form class="form-horizontal h2-left-offset-300"  action="../templates.php" method="GET">
+      <div class="row">
+        <div class="col-lg-6 col-xs-6 pull-right">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+            <input type="text" name="s" class="form-control" placeholder="Search banner by title..." >
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+      </form>
+      
     </div>
+    
+    
     
     <div class="table-responsive">
     <table class="table table-striped">
@@ -48,6 +65,9 @@
     </table>
     </div>
     
+    <p class="">
+      <a href="create.php" class="btn btn-success">Create new Banner</a>
+    </p>
     
     </div>  <!-- /container -->
 <?php include('footer.tpl.php') ?>

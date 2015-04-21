@@ -5,17 +5,24 @@ include ('../app/classes/Sitemap.php');
 include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
 
-//include ('../app/classes/Session.php');
+include ('../app/classes/Session.php');
+
+// plug the config
+include ('../app/config.php'); 
 
 
 // Get Banner for iframe by current Page ID 
 
-// plug the config
-include ('../app/config.php'); 
+$objSession = new Session();
+$objSession->start();
+$objSession->counterViewPlus();
+
+
+//Printer::printnow(Session::$counterView, 'Session::$counterView');
+//Printer::gettype(Session::$counterView);
     
 
 //Printer::printnow($_GET, '$_GET');
-
 //Printer::printnow($_SERVER['HTTP_REFERER'], '$_SERVER[HTTP_REFERER]'); // 'http://host.local/tm-cms/products.php' | 
 
 // Need Referer Link, eg:  '/' | 'index.php' | 'products.php' , etc.

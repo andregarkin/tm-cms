@@ -2,14 +2,11 @@
 class Session {
   
   public $cookLogin;
+  public static $counterView;
   
   public function start() {
-    session_start(); // start the session
-  }
-  
-  public function printnow() {
     
-    //Printer::printnow($_SESSION, '$_SESSION');
+    session_start(); // start the session
 
   }
   
@@ -44,6 +41,19 @@ class Session {
   public function destroy() {
     
     session_destroy();
+    
+  }
+  
+  public function counterViewPlus() {
+    
+    if (isset($_SESSION['counter_view'])) {
+      $_SESSION['counter_view'] +=1;
+    }
+    else {
+      $_SESSION['counter_view'] = 0;
+    }
+    
+    self::$counterView = $_SESSION['counter_view'];
     
   }
   

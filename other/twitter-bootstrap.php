@@ -1,13 +1,15 @@
 <?php
 include ('../app/classes/Session.php');
 
-$objSession = new Session();
-$objSession->start();
+
 
 
 // plug the config
 include ('../app/config.php'); 
 
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
 

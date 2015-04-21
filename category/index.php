@@ -4,13 +4,12 @@ include ('../app/classes/Session.php');
 include ('../app/classes/Page.php');
 include ('../app/classes/Sitemap.php');
 
-$objSession = new Session();
-$objSession->start();
-
 
 // plug the config
 include ('../app/config.php'); 
 
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
 

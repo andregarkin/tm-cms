@@ -5,14 +5,16 @@ include ('../app/classes/Database.php');
 include ('../app/classes/Banner.php');
 include ('../app/classes/Sitemap.php');
 
+include ('../app/classes/Validator.php');
 
-$objSession = new Session();
-$objSession->start();
 
 // plug the config
 include ('../app/config.php'); 
-    
-$objSession->printnow();
+
+
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
     
@@ -22,7 +24,7 @@ if (false == LOGGED) {
 }
 
 if (LOGGED) {
-  // show form to create banner
+  // show form to CREATE banner
 
 if ( !empty($_POST)) {
   //Printer::printnow($_POST, '$_POST');
@@ -31,6 +33,7 @@ if ( !empty($_POST)) {
   $titleError = null;
   $contentError = null;
   $option_displayError = null;
+  $option_startviewError = null;
   
   // keep track post values
   $title = $_POST['title'];
@@ -42,14 +45,15 @@ if ( !empty($_POST)) {
     $option_display = false;
   }
   
+  //Quantity of page views after that to show to user the Banner.
+  $option_startview = $_POST['option_startview'];
+  
   // get Pages ID's to displayed Banner.
   $option_display_pages = array();
   if (!empty($_POST['option_display_pages'])) {
     $option_display_pages = $_POST['option_display_pages']; // index array: [2] => Products | [52665] => Product: 52665
   }
   
-  
-  //Printer::gettype($option_display);
   
    
   // validate input
@@ -68,6 +72,16 @@ if ( !empty($_POST)) {
       $option_displayError = 'Please check the Dispaly Option';
       $valid = false;
   }
+  
+  if (empty($option_startview) && '0' !== $option_startview) {
+    $option_startviewError = 'Please enter quantity of site pages views.';
+    $valid = false;
+  }
+  elseif (false == Validator::isID($option_startview)) {
+    // also should check - is unsigned number ?
+    $option_startviewError = 'Should be a number.';
+    $valid = false;
+  }
    
   // insert data
   if ($valid) {
@@ -83,7 +97,7 @@ if ( !empty($_POST)) {
     $pdo = Database::connect(); // PDO object
     
     $objBanner = new Banner($pdo);
-    $res = $objBanner->create($title, $content, $option_display, $option_display_pages_ids); // true | false
+    $res = $objBanner->create($title, $content, $option_display, $option_startview, $option_display_pages_ids); // true | false
     Database::disconnect();
     
     if ($res) {

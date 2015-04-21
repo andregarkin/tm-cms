@@ -7,13 +7,11 @@ include ('../app/classes/Validator.php');
 include ('../app/classes/Sitemap.php');
 
 
-$objSession = new Session();
-$objSession->start();
-
 // plug the config
 include ('../app/config.php'); 
-    
-$objSession->printnow();
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
     
@@ -42,7 +40,8 @@ if (LOGGED) {
     // keep track validation errors
     $titleError = null;
     $contentError = null;
-    $option_displayError = null;  
+    $option_displayError = null;
+    $option_startviewError = null;
     
     // keep track post values
     $title = $_POST['title'];
@@ -53,6 +52,9 @@ if (LOGGED) {
     else {
       $option_display = false;
     }
+    
+    //Quantity of page views after that to show to user the Banner.
+    $option_startview = $_POST['option_startview'];
     
     // get Pages ID's to displayed Banner.
     $option_display_pages = array();
@@ -76,6 +78,16 @@ if (LOGGED) {
         $option_displayError = 'Please check the Dispaly Option';
         $valid = false;
     }
+    
+    if (empty($option_startview) && '0' !== $option_startview) {
+      $option_startviewError = 'Please enter quantity of site pages views.';
+      $valid = false;
+    }
+    elseif (false == Validator::isID($option_startview)) {
+      // also should check - is unsigned number ?
+      $option_startviewError = 'Should be a number.';
+      $valid = false;
+    }
 
      
     // update data
@@ -92,7 +104,7 @@ if (LOGGED) {
       $pdo = Database::connect(); // PDO object
       
       $objBanner = new Banner($pdo);
-      $res = $objBanner->update($title, $content, $option_display, $id, $option_display_pages_ids); // true | false
+      $res = $objBanner->update($title, $content, $option_display, $option_startview, $id, $option_display_pages_ids); // true | false
       
       if ($res) {
         $msg_update_status = "Banner was updated!";
@@ -126,14 +138,16 @@ if (LOGGED) {
       $title = 'empty';
       $content = 'empty';
       $option_display = 'empty';
+      $option_startview = 'empty';
     }
     else {
       $title = $res['title'];
       $content = $res['content'];
       $option_display = $res['option_display'];
+      $option_startview = $res['option_startview'];
       
       
-      // create array with checked Pages id: array(1,52665, 52667, 4,7):
+      // create array with checked Pages id: eg.: array(1,52665, 52667, 4,7)
       foreach ($res['option_display_pages'] as $page) {
         $pagesIDs[] = $page['page_id'];
       }

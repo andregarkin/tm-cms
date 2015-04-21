@@ -16,6 +16,7 @@ banners
    `title` tinytext NOT NULL, 
    `content` text NOT NULL, 
    `option_display` tinyint(1) NOT NULL DEFAULT '1', 
+   `option_startview` INT(10) UNSIGNED NOT NULL DEFAULT '0' ,
    PRIMARY KEY (`id`) 
    
 banners_pages

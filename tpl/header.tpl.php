@@ -31,10 +31,20 @@
   </head>
 
   <body>
-
-    <iframe id="banner" src="<?php print SUBFOLDER_PATH ?>/banners/banner.php" 
-      frameborder="1"  width="100%" height="100px" scrolling="yes"
-      >Your browser does not support iframes!</iframe>
+    <script>
+    /* ==============================================
+        Do Not Output Banner Iframe for admin part: '/banners', '/admin'
+    =============================================== */
+    var pathname = window.location.pathname; // '/tm-cms/' | '/tm-cms/index.php' |  '/tm-cms/banners/list.php'
+    
+    html = '<iframe id="banner" src="<?php print SUBFOLDER_PATH ?>/banners/banner.php" '
+      + 'frameborder="1"  width="100%" height="100px" scrolling="yes" '
+      + '>Your browser does not support iframes!</iframe>';
+      
+    if (pathname.indexOf('/banners') == -1 && pathname.indexOf('/admin') == -1) {
+      document.write(html);
+    }
+    </script>
     
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default"><!--rc navbar-fixed-top-->

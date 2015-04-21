@@ -6,13 +6,12 @@ include ('../app/classes/Banner.php');
 include ('../app/classes/Validator.php');
 
 
-$objSession = new Session();
-$objSession->start();
-
 // plug the config
 include ('../app/config.php'); 
-    
-//$objSession->printnow();
+
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
     

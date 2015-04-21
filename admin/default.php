@@ -1,6 +1,7 @@
 <?php
 include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
+include ('../app/classes/Database.php');
 
 $objSession = new Session();
 $objSession->start();
@@ -12,13 +13,12 @@ include ('../app/config.php');
 
 
 // connect to DB
-$dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-$dbObject->exec('SET CHARACTER SET utf8');  
-
+Database::connect();
     
-$objSession->printnow();
+//Printer::printnow();
 
 $objSession->defineStatus();
+Database::disconnect();
 
 include ('../tpl/admin_default.tpl.php');
 

@@ -2,9 +2,9 @@
     <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1>Dummy page</h1>
+        <h1>Search page</h1>
       </div>
-      <p class="lead">Dummy page, страница поиска по сайту</p>
+      <p class="lead">Search page, страница поиска по сайту. <br/>Для авторизованных - возможность поиска баннера по названию.</p>
       
       <?php if (!empty($msg_search_status)) : ?>
         <p class="text-center text-success">

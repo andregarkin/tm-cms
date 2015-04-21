@@ -11,7 +11,7 @@ $objSession->start();
 // plug the config
 include ('../app/config.php'); 
 
-$objSession->printnow();
+//Printer::printnow();
 $objSession->defineStatus();
 
   

@@ -101,8 +101,19 @@
               </label>
           </div>
       </div-->
-      <br>
       
+      <div class="form-group<?php print !empty($option_startviewError)?' text-danger error':'' ?>">
+          <label class="control-label col-xs-3" for="option_startview">Start to show after such quantity of page views:</label>
+          <div class="col-xs-2">
+              <input name="option_startview" type="text" class="form-control" id="option_startview" 
+                placeholder="Quantity of page views" value="<?php print !empty($option_startview)?$option_startview:0 ?>" >
+              <?php if (!empty($option_startviewError)): ?>
+                <span class="help-inline text-info"><?php print $option_startviewError ?></span>
+              <?php endif; ?>
+          </div>
+      </div>
+      
+      <br>
       <div class="form-group">
           <div class="col-xs-offset-3 col-xs-9">
               <!--input type="submit" class="btn btn-primary" value="Submit">

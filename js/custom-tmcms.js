@@ -21,7 +21,7 @@ $(document).ready(function () {
   /* ==============================================
       Remove Banner Iframe for admin part: /banners, /admin
   =============================================== */
-  
+  /*
   var pathname = $(location).attr('pathname'); // index.php | 
   //console.log('pathname: ');
   //console.log(pathname); // '/tm-cms/banners/create.php'
@@ -30,6 +30,6 @@ $(document).ready(function () {
     $('iframe#banner').remove();
     console.log('Banner Iframe tag was removed for this admin page.');
   }
-  
+  */
   
 });

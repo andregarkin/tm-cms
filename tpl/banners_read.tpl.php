@@ -88,6 +88,17 @@
           </div>
       </div>
       
+      <div class="form-group">
+        <div class="control-group">
+          <label class="col-xs-4 control-label">Start to show after such quantity of page views</label>
+          <div class="col-xs-8 controls">
+              <label class="checkbox">
+                  <?php print $row['option_startview'] ?>
+              </label>
+          </div>
+        </div>
+      </div>
+      
       <br>
       <div class="form-group">
           <div class="col-xs-offset-4 col-xs-8">

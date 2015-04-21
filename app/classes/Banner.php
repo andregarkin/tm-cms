@@ -33,8 +33,8 @@ class Banner
       // should validate id before.
       if (!Validator::isID($id)) return false;
       
-      self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'SELECT `id`, `title`, `content`, `option_display` FROM `' . self::$tableBanners . '` where `id` = ?';
+      //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = 'SELECT `id`, `title`, `content`, `option_display`, `option_startview` FROM `' . self::$tableBanners . '` where `id` = ?';
       $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
       if (!$q) return false;
       $q->execute(array($id)); // TRUE | FALSE
@@ -62,11 +62,11 @@ class Banner
     
   }
   
-  public function create($title, $content, $option_display, $option_display_pages_ids) {
+  public function create($title, $content, $option_display, $option_startview, $option_display_pages_ids) {
     
-    $entry_values = array($title, $content, $option_display);
-    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = 'INSERT INTO `' . self::$tableBanners . '` (`title`,`content`,`option_display`) values(?, ?, ?)';
+    $entry_values = array($title, $content, $option_display, $option_startview);
+    //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = 'INSERT INTO `' . self::$tableBanners . '` (`title`,`content`,`option_display`, `option_startview`) values(?, ?, ?, ?)';
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
@@ -96,14 +96,14 @@ class Banner
     
   }
   
-  public function update($title, $content, $option_display, $id, $option_display_pages_ids) {
+  public function update($title, $content, $option_display, $option_startview, $id, $option_display_pages_ids) {
     
     // should validate id before.
     if (!Validator::isID($id)) return false;
     
-    $entry_values = array($title, $content, $option_display, $id);
-    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "UPDATE `" . self::$tableBanners . "`  set title = ?, content = ?, option_display =? WHERE id = ?";
+    $entry_values = array($title, $content, $option_display, $option_startview, $id);
+    //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "UPDATE `" . self::$tableBanners . "`  set title =?, content =?, option_display =?, option_startview =? WHERE id =?";
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
@@ -143,19 +143,29 @@ class Banner
     // should validate id before.
     if (!Validator::isID($id)) return false;
     
-    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     $sql = "DELETE FROM `" . self::$tableBanners . "`  WHERE id = ?";
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute(array($id)); // TRUE | FALSE
     if ($q->rowCount() > 0) {
-      return TRUE;
+      $succsess_deletion = TRUE;
     }
-    return FALSE;
+    else {
+      $succsess_deletion = FALSE;
+    }
+    
+    // must be removed for this banner all entries from the link table.
+    $sql = "DELETE FROM `" . self::$tableBannersPages . "`  WHERE banner_id = ?";
+    $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
+    if (!$q) return false;
+    $q->execute(array($id)); // TRUE | FALSE
+    
+    return $succsess_deletion;
     
   }
   
-  /**
+  /** Get Banner Content for iframe by current Page ID 
    * 
    * @: false | 'html'
    */
@@ -211,7 +221,7 @@ class Banner
   }
   
   /** get Banners ID's  (Active banners, attached to specific pages) by Page ID.
-   *
+   *   Also take into account the number of page views $counterView.
    *
    * @  array | FALSE
    */
@@ -220,7 +230,8 @@ class Banner
     $sql = 'SELECT bnrs.id FROM `' . self::$tableBanners . '` AS bnrs, `' . self::$tableBannersPages . '` AS bnrs_pgs '
       . 'WHERE bnrs_pgs.page_id= ' . $page_id
       . ' AND bnrs_pgs.banner_id= bnrs.id '
-      . ' AND bnrs.option_display=1;';
+      . ' AND bnrs.option_display=1 '
+      . ' AND bnrs.option_startview <= ' . Session::$counterView . ';';
     
           
     try {

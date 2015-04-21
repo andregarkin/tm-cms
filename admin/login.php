@@ -17,7 +17,7 @@ $pdo = Database::connect();
 
 
 
-$objSession->printnow();
+//Printer::printnow();
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
 

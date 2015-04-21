@@ -8,13 +8,12 @@ include ('../app/classes/Sitemap.php');
 include ('../app/classes/Validator.php');
 
 
-$objSession = new Session();
-$objSession->start();
 
 // plug the config
 include ('../app/config.php'); 
-    
-//$objSession->printnow();
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
     
@@ -50,7 +49,10 @@ if (LOGGED) {
         $msg_read_status = "Can't read the entry. Something was wrong.";
         $msg_class = ' text-danger';
         
-        $row = array('id'=>null, 'title'=>'empty', 'content'=>'empty', 'option_display'=>'empty', 'option_display_pages' => array() );
+        $row = array('id'=>null, 'title'=>'empty', 'content'=>'empty', 
+          'option_display'=>'empty', 
+          'option_startview' => 'empty', 
+          'option_display_pages' => array() );
       }
       else { // format result Banner array
         
@@ -94,6 +96,9 @@ if (LOGGED) {
   
   // get Pages list
   $pages = Sitemap::$pages;
+  
+  /* Page Title */
+  $curr_page_title = 'Read Banner';
   
   include ('../tpl/banners_read.tpl.php');
   
