@@ -62,30 +62,6 @@ if (LOGGED) {
         }
         
         
-        // edit array: $res['option_display_pages']
-        /*$option_display_pages = array(); // temp array
-        foreach ($res['option_display_pages'] as $page) {
-          $option_display_pages[$page['page_id']] = Sitemap::getPageTitleByID((int) $page['page_id']);
-        }*/
-        /*
-          FROM: 
-        [option_display_pages] => Array
-        (
-            [0] => Array
-                (
-                    [page_id] => 1
-                )
-          TO:
-        [option_display_pages] => Array
-        (
-            [1] => Home
-            [52666] => Product: 52666
-            [7] => About
-        )
-        */
-                
-        
-        //$res['option_display_pages'] = $option_display_pages;
         $row = $res;
         
         //Printer::printnow($row, '$row');
