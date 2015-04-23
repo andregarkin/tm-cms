@@ -39,7 +39,7 @@
         <div class="checkbox">
           <label>
             <!--input type="checkbox" value="remember-me"/> Remember me-->
-            <span>Try mylogin and 123</span>
+            <span>Try 'mylogin' and '123' or <a href="<?php print SUBFOLDER_PATH ?>/admin/register.php">register account</a></span>
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

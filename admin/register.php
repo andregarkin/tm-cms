@@ -2,84 +2,58 @@
 include ('../app/classes/Printer.php');
 include ('../app/classes/Session.php');
 include ('../app/classes/Database.php');
-
-
-
-$objSession = new Session();
-$objSession->start();
+include ('../app/classes/User.php');
 
 // plug the config
 include ('../app/config.php'); 
 
-//Printer::printnow();
+
+$objSession = new Session();
+$objSession->start();
 $objSession->defineStatus();
 
   
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     
   // Connect to DB
   $pdo = Database::connect();
+  
+  // Check if there is already in the database user with this login. 
+  // Check if the login name is free (available). 
+  $objUser = new User();
+  $user_login_available = $objUser->checkLoginAvailable($_POST['login']); // TRUE | FALSE
+  
+  
+  if (FALSE == $user_login_available)  {
     
-	//проверяем, нет ли у нас пользователя с таким логином
-	$stmt = $pdo->query("SELECT COUNT(user_id) 
-		FROM tmcms_users WHERE 
-		user_login='" . $_POST['login'] . "'"); // PDOStatement | FALSE
-  $row = $stmt->fetch();
-
-
-  Printer::printnow($row, '$row');
+    $msg_register_status = "User with this login already exists. Try to register another name.";
+    $msg_class = "text-danger";
     
-    $user_login_exists = false;
-    if ($row['COUNT(user_id)'] == 1)  {
-        $user_login_exists = true;
-        
-        $msg_register_status = "User with this login already exists. Try to register another name.";
-        $msg_class = "text-danger";
-    }
-    
-		// Если нет, то добавляем нового пользователя
-	  if (false == $user_login_exists) {
-      $login = $_POST['login'];
-      $email = $_POST['email'];
-
-      // Убираем пробелы и хешируем пароль
-      $password = md5(trim($_POST['password']));
-      
-      
-      try {
-        $stmt = $pdo->prepare("INSERT INTO tmcms_users 
-        SET user_login='".$login."', user_password='".$password."', user_email='" .$email. "'"); // // PDOStatement | FALSE | PDOException
-        $bres = $stmt->execute(); // bool
-        if ($bres) {
-          $msg_register_status = 'Вы успешно зарегистрировались с логином - '.$login;
-          $msg_class = 'text-success';
-        }
-        else {
-          $msg_register_status = 'По каким-то причинам зарег-ся не удалось с логином - '.$login;
-          $msg_class = "text-danger";
-        }
-        
-      } catch (PDOException $e) {
-        echo 'Error : '.$e->getMessage();
-        echo '<br/>Error sql. <br/>'; 
-        exit();
-      }
-
   }
   
+  // register new user
+  if ($user_login_available) {
+    
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    
+    // Insert entry about new user in DB. 
+    $res = $objUser->create($login, $password, $email); // TRUE | FALSE
+    
+    if ($res) {
+      $msg_register_status = 'Вы успешно зарегистрировались с логином - '.$login;
+      $msg_class = 'text-success';
+    }
+    else {
+      $msg_register_status = 'По каким-то причинам зарег-ся не удалось с логином - '.$login;
+      $msg_class = "text-danger";
+    }
+
+  }
   Database::disconnect();
    
 }
   
   include('../tpl/admin_register.tpl.php');
-  
-	//по умолчанию данные будут отправляться на этот же файл
-	/*print <<< html
-	<form method="POST">
-		Логин <input name="login" type="text"><br>
-		Пароль <input name="password" type="password"><br>
-    Email <input name="email" type="email"><br>
-		<input name="submit" type="submit" value="Зарегистрироваться">
-	</form>
-html;*/
 ?>
