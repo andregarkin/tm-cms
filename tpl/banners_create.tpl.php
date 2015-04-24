@@ -17,7 +17,8 @@
       <div class="form-group<?php print !empty($titleError)?' text-danger error':'' ?>">
           <label class="control-label col-xs-3" for="title">Title:</label>
           <div class="col-xs-9">
-              <input name="title" type="text" class="form-control" id="title" placeholder="Title" value="<?php print !empty($title)?$title:'' ?>" autofocus>
+              <input name="title" type="text" class="form-control" id="title" placeholder="Title" value='<?php print !empty($title)?$title:'';?>'>
+              <!-- autofocus -->
               <?php if (!empty($titleError)): ?>
                 <span class="help-inline text-info"><?php print $titleError ?></span>
               <?php endif; ?>
@@ -110,6 +111,72 @@
               <?php if (!empty($option_startviewError)): ?>
                 <span class="help-inline text-info"><?php print $option_startviewError ?></span>
               <?php endif; ?>
+          </div>
+      </div>
+      
+      <div class="form-group<?php print !empty($option_timestartError)?' text-danger error':'' ?>">
+          <label class="control-label col-xs-3" for="option_timestart">Start to show after time (current time as default):</label>
+          <div class="col-xs-2">
+              <input name="option_timestart" type="text" class="form-control" id="option_timestart" 
+                placeholder="YYYY-MM-DD" value="<?php print !empty($option_timestart)?$option_timestart:'' ?>" >
+              <?php if (!empty($option_timestartError)): ?>
+                <span class="help-inline text-info"><?php print $option_timestartError ?></span>
+              <?php endif; ?>
+          </div>
+          
+          <label class="control-label col-xs-1 hidden" for="hours">Hours:</label>
+          <div class="col-xs-1">
+            <select name="option_timestart_hours" id="hours" class="form-control">
+              <?php for ($h=0; $h <= 23; $h++): ?>
+                <option value="<?php printf("%'02d", $h) ?>" <?php print ($option_timestart_hours == $h)?' selected':'' ?>>
+                  <?php printf("%'02d", $h) ?>
+                </option>
+              <?php endfor; ?>
+            </select> 
+          </div>
+          
+          <label class="control-label col-xs-1 hidden" for="minutes">Minutes:</label>
+          <div class="col-xs-1">
+            <select name="option_timestart_minutes" id="minutes" class="form-control">
+              <?php for ($m=0; $m <= 59; $m++): ?>
+                <option value="<?php printf("%'02d", $m) ?>" <?php print ($option_timestart_minutes == sprintf("%'02d", $m))?' selected':'' ?>>
+                  <?php printf("%'02d", $m) ?>
+                </option>
+              <?php endfor; ?>
+            </select> 
+          </div>
+      </div>
+      
+      <div class="form-group<?php print !empty($option_timeendError)?' text-danger error':'' ?>">
+          <label class="control-label col-xs-3" for="option_timeend">Show before this time (not required):</label>
+          <div class="col-xs-2">
+              <input name="option_timeend" type="text" class="form-control" id="option_timeend" 
+                placeholder="YYYY-MM-DD" value="<?php print !empty($option_timeend)?$option_timeend:'' ?>" >
+              <?php if (!empty($option_timeendError)): ?>
+                <span class="help-inline text-info"><?php print $option_timeendError ?></span>
+              <?php endif; ?>
+          </div>
+          
+          <label class="control-label col-xs-1 hidden" for="hours">Hours:</label>
+          <div class="col-xs-1">
+            <select name="option_timeend_hours" id="hours" class="form-control">
+              <?php for ($h=0; $h <= 23; $h++): ?>
+                <option value="<?php printf("%'02d", $h) ?>" <?php print ($option_timeend_hours == $h)?' selected':'' ?>>
+                  <?php printf("%'02d", $h) ?>
+                </option>
+              <?php endfor; ?>
+            </select> 
+          </div>
+          
+          <label class="control-label col-xs-1 hidden" for="minutes">Minutes:</label>
+          <div class="col-xs-1">
+            <select name="option_timeend_minutes" id="minutes" class="form-control">
+              <?php for ($m=0; $m <= 59; $m++): ?>
+                <option value="<?php printf("%'02d", $m) ?>" <?php print ($option_timeend_minutes == sprintf("%'02d", $m))?' selected':'' ?>>
+                  <?php printf("%'02d", $m) ?>
+                </option>
+              <?php endfor; ?>
+            </select> 
           </div>
       </div>
       

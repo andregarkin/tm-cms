@@ -62,11 +62,12 @@ class Banner
     
   }
   
-  public function create($title, $content, $option_display, $option_startview, $option_display_pages_ids) {
+  public function create($title, $content, $option_display, $option_startview, $option_timestart, $option_timeend, $option_display_pages_ids) {
     
-    $entry_values = array($title, $content, $option_display, $option_startview);
+    $entry_values = array($title, $content, $option_display, $option_startview, $option_timestart, $option_timeend);
     //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = 'INSERT INTO `' . self::$tableBanners . '` (`title`,`content`,`option_display`, `option_startview`) values(?, ?, ?, ?)';
+    $sql = 'INSERT INTO `' . self::$tableBanners . '` (`title`,`content`,`option_display`, `option_startview`, '
+        .' `option_timestart`, `option_timeend`) values(?, ?, ?, ?, ?, ?)';
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE

@@ -1,5 +1,6 @@
 <?php
 // define the constants
+define('END_EPOCH', '2100-01-01'); // the last day of application usage
 
 define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local' | 'magenta.ho.ua' | 
 define('DOMAIN_LOCAL', 'host.local');

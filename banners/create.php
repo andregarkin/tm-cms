@@ -25,6 +25,13 @@ if (false == LOGGED) {
 
 if (LOGGED) {
   // show form to CREATE banner
+  
+  $option_timestart = date($format = 'Y-m-d'); // 2015-01-26 | 2015-04-24
+  $option_timestart_hours = date('G'); // from '0' to '23'
+  $option_timestart_minutes = date('i'); // from '00' to '59'
+  
+  $option_timeend_hours = null;
+  $option_timeend_minutes = null;
 
 if ( !empty($_POST)) {
   //Printer::printnow($_POST, '$_POST');
@@ -34,6 +41,9 @@ if ( !empty($_POST)) {
   $contentError = null;
   $option_displayError = null;
   $option_startviewError = null;
+  
+  $option_timestartError = null;
+  $option_timeendError = null;
   
   // keep track post values
   $title = $_POST['title'];
@@ -54,6 +64,15 @@ if ( !empty($_POST)) {
     $option_display_pages = $_POST['option_display_pages']; // index array: [2] => Products | [52665] => Product: 52665
   }
   
+  $option_timestart = $_POST['option_timestart']; // '' | string
+  $option_timestart_hours = $_POST['option_timestart_hours']; // ? | from '00' to '23'
+  $option_timestart_minutes = $_POST['option_timestart_minutes']; // ? | from '00' to '59'
+  
+  $option_timeend = $_POST['option_timeend']; // '' | string
+  $option_timeend_hours = $_POST['option_timeend_hours']; // ? | '00' - '23'
+  $option_timeend_minutes = $_POST['option_timeend_minutes']; // ? | '00' - '59'
+
+  //Printer::printnow($_POST, '$_POST');
   
    
   // validate input
@@ -82,7 +101,23 @@ if ( !empty($_POST)) {
     $option_startviewError = 'Should be a number.';
     $valid = false;
   }
-   
+  
+  if (empty($option_timestart)) {
+    $option_timestart = date($format = 'Y-m-d'); // '2015-01-26' | '2015-04-24'
+  }
+  elseif (false == Validator::isDateFormat($option_timestart)) { // Boolean
+    $option_timestartError = 'Should be a correct date in format YYYY-MM-DD.';
+    $valid = false;
+  }
+  
+  if (empty($option_timeend)) {
+    $option_timeend = END_EPOCH; // YYYY-MM-DD
+  }
+  elseif (false == Validator::isDateFormat($option_timeend)) { // Boolean
+    $option_timeendError = 'Should be a correct date in format YYYY-MM-DD.';
+    $valid = false;
+  }
+  
   // insert data
   if ($valid) {
     
@@ -93,11 +128,22 @@ if ( !empty($_POST)) {
     if (0 == count($option_display_pages))
       $option_display = '0';
     
+    // add hours and minutes
+    // 'YYYY-MM-DD hh:mm:ss' | '2011-10-20 11:00:00'
+    $option_DATETIME_start = ($option_timestart . ' ' . $option_timestart_hours . ':' . $option_timestart_minutes . ':00');
+    $option_DATETIME_end = ($option_timeend . ' ' . $option_timeend_hours . ':' . $option_timeend_minutes . ':00');
+    
+    //Printer::printnow($option_DATETIME_start, '$option_DATETIME_start');
+    //Printer::printnow($option_DATETIME_end, '$option_DATETIME_end');
+    
     // connect to DB
     $pdo = Database::connect(); // PDO object
     
     $objBanner = new Banner($pdo);
-    $res = $objBanner->create($title, $content, $option_display, $option_startview, $option_display_pages_ids); // true | false
+    $res = $objBanner->create($title, $content, 
+                                                $option_display, $option_startview, 
+                                                $option_DATETIME_start, $option_DATETIME_end, 
+                                                $option_display_pages_ids); // true | false
     Database::disconnect();
     
     if ($res) {

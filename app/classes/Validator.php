@@ -20,5 +20,22 @@ class Validator {
     
   }
   
+  /** Check date is in YYYY-MM-DD format
+   *
+   *
+   * @ bool
+   */
+  public static function isDateFormat($may_date) {
+    
+    $dt = DateTime::createFromFormat("Y-m-d", $may_date);
+    
+    if ($dt !== false && !array_sum($dt->getLastErrors())) {
+        //echo $dt->format('Y-m-d');
+        return true;
+    }
+    return false;
+    
+  }
+  
   
 } // end class Validator
