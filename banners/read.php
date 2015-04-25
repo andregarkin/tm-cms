@@ -52,6 +52,8 @@ if (LOGGED) {
         $row = array('id'=>null, 'title'=>'empty', 'content'=>'empty', 
           'option_display'=>'empty', 
           'option_startview' => 'empty', 
+          'option_timestart' => 'empty',
+          'option_timeend' => 'empty',
           'option_display_pages' => array() );
       }
       else { // format result Banner array

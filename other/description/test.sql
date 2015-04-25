@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2015 at 06:16 PM
+-- Generation Time: Apr 25, 2015 at 02:39 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -72,15 +72,11 @@ CREATE TABLE IF NOT EXISTS `tmcms_banners_pages` (
 INSERT INTO `tmcms_banners_pages` (`banner_id`, `page_id`) VALUES
 (16, 1),
 (2, 52667),
-(20, 7),
-(20, 4),
-(20, 52667),
-(20, 52665),
 (23, 5),
 (23, 3),
 (23, 52666),
-(24, 1),
 (24, 2),
+(24, 1),
 (25, 1),
 (25, 2),
 (26, 2),
@@ -91,7 +87,12 @@ INSERT INTO `tmcms_banners_pages` (`banner_id`, `page_id`) VALUES
 (1, 1),
 (3, 52667),
 (4, 52667),
-(5, 52667);
+(5, 52667),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1);
 
 -- --------------------------------------------------------
 
@@ -104,37 +105,41 @@ CREATE TABLE IF NOT EXISTS `tmcms_tbanners` (
   `title` tinytext NOT NULL,
   `content` text NOT NULL,
   `option_display` tinyint(1) NOT NULL DEFAULT '1',
-  `option_startview` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+  `option_startview` int(10) unsigned NOT NULL DEFAULT '0',
+  `option_timestart` datetime NOT NULL,
+  `option_timeend` datetime NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `tmcms_tbanners`
 --
 
-INSERT INTO `tmcms_tbanners` (`id`, `title`, `content`, `option_display`, `option_startview`) VALUES
-(1, 'Banner First after 75', '<div>On - Home - after 75</div>', 1, 75),
-(2, 'On - Product 52667 - after 10', '<div>On - Product 52667 - after 10</div>\r\n<div>Second Lorem ipsum dolor</div>', 1, 10),
-(3, 'On - Product 52667 - after 12', '<div>On - Product 52667 - after 12</div>\r\n<div>Second Lorem ipsum dolor</div>', 1, 12),
-(4, 'On - Product 52667 - after 0', 'On - Product 52667 - after 0', 1, 0),
-(5, 'On - Product 52667 - after 1', '<div>On - Product 52667 - after 1</div>', 1, 1),
-(6, 'Banner Second', '<div>Second Lorem ipsum dolor</div>', 1, 0),
-(16, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0),
-(8, 'Banner Fourth', '<div>Fourth Lorem ipsum dolor</div>', 1, 0),
-(17, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0),
-(10, 'Banner New', '<div>New Lorem ipsum dolor</div>', 1, 0),
-(18, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0),
-(12, 'Banner New', '<div>New Lorem ipsum dolor</div>', 1, 0),
-(19, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0),
-(14, 'Banner New 1', 'print !empty content:''test''', 1, 0),
-(15, 'Banner New 15 Updat', '<?php > 15', 0, 0),
-(20, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0),
-(21, 'Banner New 21', 'Lorem ipsum banner 21', 0, 0),
-(22, 'Banner New 21', 'Lorem ipsum banner 21', 0, 0),
-(23, 'Banner 23 for Products, Product 52666, Search, Contuct Us', 'Content of Banner 23 for Products, Product 52666, Search, Contuct Us.', 1, 0),
-(24, 'Banner for Home, Products', '<div class="bonner" >Content for Banner for Home, Products</div>', 1, 0),
-(25, 'Banner 2 for Home, Products', '<div class="bonner" >Content for Banner 2 for Home, Products</div>', 1, 0),
-(26, 'Banner 3 for Home, Products', '<div class="bonner" >Content for Banner 3 for Home, Products</div>', 1, 5),
-(27, 'Start View asap on Prod, Categ', 'Content Start View asap on Prod, Categ', 1, 4);
+INSERT INTO `tmcms_tbanners` (`id`, `title`, `content`, `option_display`, `option_startview`, `option_timestart`, `option_timeend`) VALUES
+(1, 'Banner First after 75', '<div>On - Home - after 75</div>', 1, 75, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(2, 'On - Product 52667 - after 10', '<div>On - Product 52667 - after 10</div>\r\n<div>Second Lorem ipsum dolor</div>', 1, 10, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(3, 'On - Product 52667 - after 12', '<div>On - Product 52667 - after 12</div>\r\n<div>Second Lorem ipsum dolor</div>', 1, 12, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(4, 'On - Product 52667 - after 0', 'On - Product 52667 - after 0', 1, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(5, 'On - Product 52667 - after 1', '<div>On - Product 52667 - after 1</div>', 1, 1, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(6, 'Banner Second', '<div>Second Lorem ipsum dolor</div>', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(16, 'Banner New 16', 'Lorem ipsum banner 16', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(8, 'Banner Fourth', '<div>Fourth Lorem ipsum dolor</div>', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(17, 'Banner New 17', 'Lorem ipsum banner 17', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(10, 'Banner New', '<div>New Lorem ipsum dolor</div>', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(12, 'Banner New', '<div>New Lorem ipsum dolor</div>', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(14, 'Banner New 1', 'print !empty content:''test''', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(15, 'Banner New 15 Updat', '<?php > 15', 0, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(21, 'Banner New 21', 'Lorem ipsum banner 21', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 'Banner New 21', 'Lorem ipsum banner 21', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(23, 'Banner 23 for Products, Product 52666, Search, Contuct Us', 'Content of Banner 23 for Products, Product 52666, Search, Contuct Us.', 1, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(24, 'Banner for Home, Products', '<div class="bonner" >Content for Banner for Home, Products</div>', 1, 0, '2015-04-25 00:00:00', '2100-01-01 00:00:00'),
+(25, 'Banner 2 for Home, Products', '<div class="bonner" >Content for Banner 2 for Home, Products</div>', 1, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(26, 'Banner 3 for Home, Products', '<div class="bonner" >Content for Banner 3 for Home, Products</div>', 1, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(27, 'Start View asap on Prod, Categ', 'Content Start View asap on Prod, Categ', 1, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(28, 'Banner #28 Test DATETIME', 'Banner #28 Test DATETIME', 1, 0, '2015-04-24 00:00:00', '2100-01-01 00:00:00'),
+(29, 'Banner #29 Test DATETIME', 'Banner #29 Test DATETIME', 1, 0, '2015-04-24 00:00:00', '2015-04-25 00:00:00'),
+(30, 'Banner #30 Test DATETIME', 'Banner #30 Test DATETIME', 1, 0, '2015-04-25 15:10:00', '2015-04-25 16:20:00'),
+(31, 'Banner #31 Test DATETIME', 'Banner #31 Test DATETIME', 1, 0, '2015-04-26 17:01:00', '2015-04-27 18:02:00'),
+(32, 'Banner #32 Test DATETIME', 'Banner #32 Test DATETIME', 1, 0, '2015-04-26 17:01:00', '2015-04-27 18:02:00');
 
 -- --------------------------------------------------------
 
@@ -147,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `tmcms_users` (
   `user_login` varchar(30) NOT NULL,
   `user_password` varchar(32) NOT NULL,
   `user_email` varchar(32) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `tmcms_users`
@@ -158,7 +163,8 @@ INSERT INTO `tmcms_users` (`user_id`, `user_login`, `user_password`, `user_email
 (2, 'andregarkin', '202cb962ac59075b964b07152d234b70', 'andregarkin@host.local'),
 (8, 'bloknot', '202cb962ac59075b964b07152d234b70', ''),
 (6, 'magenta', '202cb962ac59075b964b07152d234b70', 'magenta@local'),
-(7, 'mariman', '202cb962ac59075b964b07152d234b70', 'andregarkin@gmail.com');
+(7, 'mariman', '202cb962ac59075b964b07152d234b70', 'andregarkin@gmail.com'),
+(9, 'bloknot2', '202cb962ac59075b964b07152d234b70', 'andregarkin@host.local');
 
 --
 -- Indexes for dumped tables
@@ -201,12 +207,12 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `tmcms_tbanners`
 --
 ALTER TABLE `tmcms_tbanners`
-MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tmcms_users`
 --
 ALTER TABLE `tmcms_users`
-MODIFY `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

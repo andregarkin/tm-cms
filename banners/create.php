@@ -133,9 +133,6 @@ if ( !empty($_POST)) {
     $option_DATETIME_start = ($option_timestart . ' ' . $option_timestart_hours . ':' . $option_timestart_minutes . ':00');
     $option_DATETIME_end = ($option_timeend . ' ' . $option_timeend_hours . ':' . $option_timeend_minutes . ':00');
     
-    //Printer::printnow($option_DATETIME_start, '$option_DATETIME_start');
-    //Printer::printnow($option_DATETIME_end, '$option_DATETIME_end');
-    
     // connect to DB
     $pdo = Database::connect(); // PDO object
     

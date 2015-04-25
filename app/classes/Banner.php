@@ -34,7 +34,7 @@ class Banner
       if (!Validator::isID($id)) return false;
       
       //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'SELECT `id`, `title`, `content`, `option_display`, `option_startview` FROM `' . self::$tableBanners . '` where `id` = ?';
+      $sql = 'SELECT `id`, `title`, `content`, `option_display`, `option_startview`, `option_timestart`, `option_timeend` FROM `' . self::$tableBanners . '` where `id` = ?';
       $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
       if (!$q) return false;
       $q->execute(array($id)); // TRUE | FALSE
@@ -97,14 +97,15 @@ class Banner
     
   }
   
-  public function update($title, $content, $option_display, $option_startview, $id, $option_display_pages_ids) {
+  public function update($title, $content, $option_display, $option_startview, $option_timestart, $option_timeend, $id, $option_display_pages_ids) {
     
     // should validate id before.
     if (!Validator::isID($id)) return false;
     
-    $entry_values = array($title, $content, $option_display, $option_startview, $id);
+    $entry_values = array($title, $content, $option_display, $option_startview, $option_timestart, $option_timeend, $id);
     //self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "UPDATE `" . self::$tableBanners . "`  set title =?, content =?, option_display =?, option_startview =? WHERE id =?";
+    $sql = "UPDATE `" . self::$tableBanners . "`  set title =?, content =?, option_display =?, option_startview =?, "
+        . " option_timestart =?, option_timeend =? WHERE id =?";
     $q = self::$pdo->prepare($sql); // obj PDOStatement | FALSE | PDOException
     if (!$q) return false;
     $q->execute($entry_values); // TRUE | FALSE
@@ -232,8 +233,10 @@ class Banner
       . 'WHERE bnrs_pgs.page_id= ' . $page_id
       . ' AND bnrs_pgs.banner_id= bnrs.id '
       . ' AND bnrs.option_display=1 '
-      . ' AND bnrs.option_startview <= ' . Session::$counterView . ';';
+      . ' AND bnrs.option_startview <= ' . Session::$counterView
+      . ' AND NOW() BETWEEN bnrs.option_timestart AND bnrs.option_timeend;';
     
+    // and current DATETIME BETWEEN option_timestart AND option_timeend
           
     try {
     $stmt = self::$pdo->query($sql); // PDOStatement | FALSE

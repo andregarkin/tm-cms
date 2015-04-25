@@ -99,6 +99,28 @@
         </div>
       </div>
       
+      <div class="form-group">
+        <div class="control-group">
+          <label class="col-xs-4 control-label">Start to show after time</label>
+          <div class="col-xs-2 controls">
+              <label class="checkbox">
+                  <?php print $row['option_timestart'] ?><!--eg.: '2015-04-25 18:00:00'-->
+              </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="control-group">
+          <label class="col-xs-4 control-label">Show before this time</label>
+          <div class="col-xs-2 controls">
+              <label class="checkbox">
+                  <?php print $row['option_timeend'] ?>
+              </label>
+          </div>
+        </div>
+      </div>
+      
       <br>
       <div class="form-group">
           <div class="col-xs-offset-4 col-xs-8">
