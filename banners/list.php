@@ -51,9 +51,8 @@ First Lorem ipsum dolor
   Database::disconnect();
   
   /* Page Title */
-  $curr_page_link = Page::getCurrentLink();
-  // eg: $curr_page_title = 'Home';
-  $curr_page_title = Sitemap::getPageTitle($curr_page_link);
+  $curr_page_link = Page::getCurrentLink(); // eg: '/index.php'
+  $curr_page_title = Sitemap::getPageTitle($curr_page_link); // eg: 'Home'
 
   include ('../tpl/banners_list.tpl.php');  
 }

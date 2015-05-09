@@ -13,6 +13,10 @@ include ('../app/config.php');
 
 // Get Banner for iframe by current Page ID 
 
+if (!isset($_SERVER['HTTP_REFERER'])) {
+  header("Location: http://" . SERVER_NAME . SUBFOLDER_PATH);
+}
+
 $objSession = new Session();
 $objSession->start();
 $objSession->counterViewPlus();
