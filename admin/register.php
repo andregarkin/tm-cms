@@ -1,11 +1,15 @@
 <?php
-include ('../app/classes/Printer.php');
-include ('../app/classes/Session.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/User.php');
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
+
+#include ('../app/classes/Printer.php');
+#include ('../app/classes/Session.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/User.php');
+
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
 
 
 $objSession = new Session();
@@ -54,6 +58,10 @@ if (isset($_POST['submit'])) {
   Database::disconnect();
    
 }
-  
+
+  /* Page Title */
+  $curr_page_title = 'Register User';
+
+  Logger::write();
   include('../tpl/admin_register.tpl.php');
 ?>

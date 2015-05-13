@@ -1,17 +1,17 @@
 <?php
-include ('../app/classes/Printer.php');
-include ('../app/classes/Session.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/Banner.php');
-include ('../app/classes/Sitemap.php');
-
-include ('../app/classes/Validator.php');
-
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
 
+#include ('../app/classes/Printer.php');
+#include ('../app/classes/Session.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/Banner.php');
+#include ('../app/classes/Sitemap.php');
+#include ('../app/classes/Validator.php');
 
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
 
 $objSession = new Session();
 $objSession->start();
@@ -159,6 +159,6 @@ if ( !empty($_POST)) {
   /* Page Title */
   $curr_page_title = 'Create Banner';
 
+  Logger::write();
   include ('../tpl/banners_create.tpl.php');
-  //include ('../tpl/banners_create_temp.tpl.php');
 }

@@ -1,15 +1,17 @@
 <?php
-include ('../app/classes/Printer.php');
-include('../app/classes/Iframe.php');
-include ('../app/classes/Sitemap.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/Banner.php');
-
-include ('../app/classes/Session.php');
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
 
+#include ('../app/classes/Printer.php');
+#include('../app/classes/Iframe.php');
+#include ('../app/classes/Sitemap.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/Banner.php');
+#include ('../app/classes/Session.php');
+
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
 
 // Get Banner for iframe by current Page ID 
 
@@ -50,6 +52,6 @@ if ($page_id) {
 if (empty($banner_content) || false == $banner_content) {
   $banner_content = '<h1 style="text-align:center; color:green;">On this page can be placed your banner</h1>';
 }
-  
-  
+
+Logger::write();
 include ('../tpl/banners_banner.tpl.php');

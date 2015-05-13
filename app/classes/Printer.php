@@ -1,10 +1,10 @@
 <?php
 class Printer
 {
-  
+
   public static function printnow($var, $var_name, $hide = false) {
     if (false == TM_DEBUG) return;
-    
+
     if (!$hide) {
       print $var_name . ': <pre>';
       print_r($var);
@@ -16,7 +16,7 @@ class Printer
       print '<!--pr: /' . $var_name . '-->';
     }
   }
-  
+
   public static function gettype($var, $hide = false) {
     if (false == TM_DEBUG) return;
     if (!$hide) {
@@ -25,7 +25,7 @@ class Printer
     else {
       print '<!--pr: gettype-->'. gettype($var) .'<!--pr: /gettype-->';
     }
-    
+
   }
-  
+
 }

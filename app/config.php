@@ -91,3 +91,21 @@ define('TABLE_PREFIX', 'tmcms_');
 	mysql_query ("SET NAMES 'utf8'");
 
 */
+
+/**
+ * Set the default time zone.
+ *
+ * @link http://www.php.net/manual/timezones
+ */
+date_default_timezone_set('Europe/Kiev');
+
+/**
+ * Set the default locale.
+ *
+ * @link http://www.php.net/manual/function.setlocale
+ */
+setlocale(LC_ALL, 'en_US.utf-8');
+
+//$loc_name = setlocale(LC_ALL, null);
+//$loc_name = setlocale(LC_TIME,null);
+//Printer::printnow($loc_name,'$loc_name'); // English_United States.1252   (why?)

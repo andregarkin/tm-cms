@@ -1,14 +1,17 @@
 <?php
-include ('../app/classes/Printer.php');
-include ('../app/classes/Session.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/Banner.php');
-include ('../app/classes/Validator.php');
-include ('../app/classes/Sitemap.php');
-
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
+
+#include ('../app/classes/Printer.php');
+#include ('../app/classes/Session.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/Banner.php');
+#include ('../app/classes/Validator.php');
+#include ('../app/classes/Sitemap.php');
+
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
 
 $objSession = new Session();
 $objSession->start();
@@ -227,6 +230,7 @@ if (LOGGED) {
   
   /* Page Title */
   $curr_page_title = 'Update Banner';
-  
+
+  Logger::write();
   include ('../tpl/banners_update.tpl.php');
 }

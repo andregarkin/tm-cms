@@ -1,12 +1,16 @@
 <?php
-include ('../app/classes/Printer.php');
-include ('../app/classes/Session.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/User.php');
-
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
+
+#include ('../app/classes/Printer.php');
+#include ('../app/classes/Session.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/User.php');
+
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
+
 
 
 $objSession = new Session();
@@ -53,6 +57,11 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
 Database::disconnect();
 
 $objSession->defineStatus(); // should be placed after define $_SESSION['user_id']
+
+/* Page Title */
+$curr_page_title = 'Login User';
+
+Logger::write();
 include('../tpl/admin_login.tpl.php');
 
 ?>

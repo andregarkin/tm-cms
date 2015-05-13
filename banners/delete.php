@@ -1,13 +1,17 @@
 <?php
-include ('../app/classes/Printer.php');
-include ('../app/classes/Session.php');
-include ('../app/classes/Database.php');
-include ('../app/classes/Banner.php');
-include ('../app/classes/Validator.php');
-
-
 // plug the config
-include ('../app/config.php'); 
+include ('../app/config.php');
+
+#include ('../app/classes/Printer.php');
+#include ('../app/classes/Session.php');
+#include ('../app/classes/Database.php');
+#include ('../app/classes/Banner.php');
+#include ('../app/classes/Validator.php');
+
+// plug the functions
+include ('../app/functions.php');
+Logger::laydown($_SERVER['REQUEST_URI']);
+
 
 
 $objSession = new Session();
@@ -62,8 +66,10 @@ if (LOGGED) {
     //header("Location: list.php");
      
   }
-  
-  
+
+  /* Page Title */
+  $curr_page_title = "Delete Banner"; // eg: 'Home'
+  Logger::write();
   include ('../tpl/banners_delete.tpl.php');
   
 }
