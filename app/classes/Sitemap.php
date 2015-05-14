@@ -32,8 +32,12 @@ class Sitemap {
   
   
   public static function getPageTitle($curr_page_link) {
-    
-    if (array_key_exists($key= $curr_page_link, $array = self::$pages)) {
+
+      if (!is_string($curr_page_link)) {
+          return false;
+      }
+
+    if (array_key_exists($key = $curr_page_link, $array = self::$pages)) {
       return self::$pages[$curr_page_link]['title'];
     }
     else

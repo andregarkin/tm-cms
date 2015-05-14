@@ -10,9 +10,8 @@ class Page {
    */
   public static function getCurrentLink() {
     
-    $php_self = $_SERVER['PHP_SELF']; // '/tm-cms/index.php' |  '/tm-cms/category/index.php'
-    
-    $subfolder_path = SUBFOLDER_PATH; // '/tm-cms'
+    $php_self = $_SERVER['PHP_SELF']; // '/tm-cms/index.php' | '/tm-cms/category/index.php' | '/index.php'
+    $subfolder_path = SUBFOLDER_PATH; // '/tm-cms' | ''
     $offset = strlen($subfolder_path); // 7
     
     //Printer::printnow($offset, '$offset'); // 7

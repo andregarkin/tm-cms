@@ -4,16 +4,25 @@ define('END_EPOCH', '2100-01-01'); // the last day of application usage
 
 define('SERVER_NAME', $_SERVER['SERVER_NAME']); // 'host.local' | 'magenta.ho.ua' | 
 define('DOMAIN_LOCAL', 'host.local');
+define('DOMAIN_LOCAL2', 'tm-cms.local');
 define('DOMAIN_DEV', 'magenta.ho.ua');
 define('DOMAIN_LIVE', 'unexist');
 
 //print 'SERVER_NAME: ' . SERVER_NAME . '<br>'; // 'host.local'
 
 
-$string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/tm-cms/index.php'
-$ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // '/tm-cms'
-$subfolderPath = '/' . $ar[0]; // '/tm-cms'
-define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта
+$string = trim($_SERVER['SCRIPT_NAME'], '/');  // [SCRIPT_NAME] => '/tm-cms/index.php' | '/index.php'
+$ar = explode($delimeter = '/', $string, $limit = 2); // $ar[0]; // 'tm-cms' | 'index.php'
+
+if (count($ar) == 1 || $ar[0] == 'category' || $ar[0] == 'website-templates'
+    || $ar[0] == 'banners' || $ar[0] == 'other' || $ar[0] == 'admin') {
+    $subfolderPath = '';
+}
+else {
+    $subfolderPath = '/' . $ar[0]; // '/tm-cms'
+}
+
+define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к реальной папке сайта (i.e. 'site_base' termin)
 
 //print 'SUBFOLDER_PATH: ' . SUBFOLDER_PATH . '<br>'; // '/tm-cms'
 
@@ -21,7 +30,7 @@ define ('SUBFOLDER_PATH', $subfolderPath); // путь от доменв к ре
 //print_r($_SERVER);
 //print '</pre>';
 
-if (SERVER_NAME == DOMAIN_LOCAL) {
+if (SERVER_NAME == DOMAIN_LOCAL || SERVER_NAME == DOMAIN_LOCAL2) {
 
   define('DB_NAME', 'test');
   define('DB_USER', 'user19');
